@@ -4,11 +4,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private MobileJoystick playerJoystick;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float gravity = 9.81f; // Trọng lực
+    //[SerializeField] private float gravity = 9.81f; // Trọng lực
 
     //private CharacterController controller;
     private Rigidbody rb;
-    private Vector3 velocity; // Dùng để xử lý trọng lực
+    //private Vector3 velocity; // Dùng để xử lý trọng lực
 
     void Start()
     {
