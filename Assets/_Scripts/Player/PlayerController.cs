@@ -5,7 +5,9 @@ public enum AnimationState
 {
     Idle,
     Move,
-    Climb
+    Climb,
+    Jump,
+    Fly
 }
 
 public class PlayerController : MonoBehaviour
@@ -17,10 +19,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask climbableLayer; // Layer của các vật có thể leo lên
     [SerializeField] private float climbHeight; // Chiều cao tối đa có thể leo
     [SerializeField] private float climbSpeed; // Tốc độ leo lên
+    [SerializeField] private float jumpForce; // Lực nhảy
 
     private Rigidbody rb;
     private Animator animator;
     private bool isClimbing;
+    private bool isJumping;
+    private bool isGrounded;
     private AnimationState currentState; // Chuyển State Animation bằng String
 
     void Start()
@@ -31,11 +36,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Kiểm tra nếu nhân vật đang tiếp đất
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f, LayerMask.GetMask("Ground"));
+
         if (!isClimbing) // Nếu không đang leo thì cho phép di chuyển
         {
             PlayerMove();
             CheckForClimbable();
         }
+
     }
 
     void PlayerMove()
@@ -66,6 +75,9 @@ public class PlayerController : MonoBehaviour
 
     void CheckForClimbable()
     {
+        // Chỉ leo nếu nhân vật ĐANG ĐỨNG trên mặt đất
+        if (!isGrounded) return;
+
         // Tạo một raycast phía trước nhân vật
         RaycastHit hit;
         Vector3 rayStart = transform.position + Vector3.up * 0.5f; // Điểm bắn ray từ trước nhân vật
@@ -102,6 +114,23 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(transform.position.x, targetY + 1f, transform.position.z);
         isClimbing = false;
         ChangeAnimationState(AnimationState.Idle);
+    }
+
+    void HandleJump()
+    {
+        // Nếu nhân vật đang trên mặt đất và nhấn phím SPACE thì nhảy
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            isJumping = true;
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+            ChangeAnimationState(AnimationState.Jump);
+        }
+
+        // Khi nhân vật rơi xuống, chuyển sang trạng thái "Fly"
+        if (rb.linearVelocity.y < -0.1f && !isGrounded)
+        {
+            ChangeAnimationState(AnimationState.Fly);
+        }
     }
 
     void ChangeAnimationState(AnimationState newState)
