@@ -1,21 +1,27 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public enum AnimationState
 {
     Idle,
-    Move
+    Move,
+    Climb
 }
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private MobileJoystick _playerJoystick;
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private GameObject _model;
+    [SerializeField] private GameObject _model; // Dùng để xoay model theo hướng di chuyển
 
-    //private CharacterController controller;
+    [SerializeField] private LayerMask climbableLayer; // Layer của các vật có thể leo lên
+    [SerializeField] private float climbHeight; // Chiều cao tối đa có thể leo
+    [SerializeField] private float climbSpeed; // Tốc độ leo lên
+
     private Rigidbody rb;
     private Animator animator;
-    private AnimationState currentState;
+    private bool isClimbing;
+    private AnimationState currentState; // Chuyển State Animation bằng String
 
     void Start()
     {
@@ -25,7 +31,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        PlayerMove();
+        if (!isClimbing) // Nếu không đang leo thì cho phép di chuyển
+        {
+            PlayerMove();
+            CheckForClimbable();
+        }
     }
 
     void PlayerMove()
@@ -52,6 +62,46 @@ public class PlayerController : MonoBehaviour
         {
             ChangeAnimationState(AnimationState.Idle);
         }
+    }
+
+    void CheckForClimbable()
+    {
+        // Tạo một raycast phía trước nhân vật
+        RaycastHit hit;
+        Vector3 rayStart = transform.position + Vector3.up * 0.5f; // Điểm bắn ray từ trước nhân vật
+        Vector3 rayDirection = transform.forward;
+
+        if (Physics.Raycast(rayStart, rayDirection, out hit, 1f, climbableLayer))
+        {
+            float obstacleHeight = hit.point.y - transform.position.y;
+
+            if (obstacleHeight > 0.3f && obstacleHeight <= climbHeight) // Chỉ leo khi chiều cao hợp lý
+            {
+                StartCoroutine(ClimbObstacle(hit.point.y));
+            }
+        }
+    }
+
+    IEnumerator ClimbObstacle(float targetY)
+    {
+        isClimbing = true;
+        rb.linearVelocity = Vector3.zero; // Dừng di chuyển
+        ChangeAnimationState(AnimationState.Climb);
+
+        float startY = transform.position.y;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < 1f)
+        {
+            float newY = Mathf.Lerp(startY, targetY + 1f, elapsedTime);
+            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+            elapsedTime += Time.deltaTime * climbSpeed;
+            yield return null;
+        }
+
+        transform.position = new Vector3(transform.position.x, targetY + 1f, transform.position.z);
+        isClimbing = false;
+        ChangeAnimationState(AnimationState.Idle);
     }
 
     void ChangeAnimationState(AnimationState newState)
