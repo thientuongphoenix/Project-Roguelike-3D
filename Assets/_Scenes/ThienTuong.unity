@@ -609,8 +609,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerJoystick: {fileID: 1127573996593023698}
-  _moveSpeed: 0.8
-  _Model: {fileID: 3566785106839507240}
+  _moveSpeed: 2
+  _model: {fileID: 3566785106839507240}
 --- !u!54 &925525356
 Rigidbody:
   m_ObjectHideFlags: 0
