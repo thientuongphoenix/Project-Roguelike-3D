@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private MobileJoystick _playerJoystick;
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private GameObject _Model;
 
     //private CharacterController controller;
     private Rigidbody rb;
@@ -30,6 +31,12 @@ public class PlayerController : MonoBehaviour
 
         //// Di chuyển nhân vật
         rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+
+        //xoay nhân vật theo hướng chuyển động
+        if (move != Vector3.zero)
+        {
+            _Model.transform.rotation = Quaternion.LookRotation(move * Time.deltaTime);
+        }
 
         // **Kiểm tra tốc độ để cập nhật Animation**
         if (move.magnitude > 0.1f) // Nếu có di chuyển

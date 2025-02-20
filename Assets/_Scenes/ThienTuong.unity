@@ -573,7 +573,6 @@ GameObject:
   - component: {fileID: 925525356}
   - component: {fileID: 925525357}
   - component: {fileID: 925525355}
-  - component: {fileID: 925525358}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -611,6 +610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerJoystick: {fileID: 1127573996593023698}
   _moveSpeed: 0.8
+  _Model: {fileID: 3566785106839507240}
 --- !u!54 &925525356
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -659,20 +659,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.29692447
   m_Center: {x: -0.004448116, y: 0.24572384, z: 0}
---- !u!114 &925525358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925525352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e9c639a6f500748a8826e5d6a34fdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  currentState: 0
 --- !u!1 &969964101
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +763,7 @@ Transform:
   m_GameObject: {fileID: 969964101}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.266, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
