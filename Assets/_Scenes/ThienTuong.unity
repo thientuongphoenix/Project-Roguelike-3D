@@ -573,6 +573,7 @@ GameObject:
   - component: {fileID: 925525356}
   - component: {fileID: 925525357}
   - component: {fileID: 925525355}
+  - component: {fileID: 925525358}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -614,8 +615,7 @@ MonoBehaviour:
   climbableLayer:
     serializedVersion: 2
     m_Bits: 64
-  climbHeight: 5
-  climbSpeed: 1
+  climbSpeed: 0.5
   jumpForce: 2
 --- !u!54 &925525356
 Rigidbody:
@@ -665,6 +665,23 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.12083673
   m_Center: {x: -0.003436774, y: 0.10606721, z: -0.001662612}
+--- !u!114 &925525358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925525352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf55df39e2c61444eaae7b5b85c10203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rayDistance: 5
+  _climbableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _model: {fileID: 3560185529289326170}
 --- !u!1 &969964101
 GameObject:
   m_ObjectHideFlags: 0
