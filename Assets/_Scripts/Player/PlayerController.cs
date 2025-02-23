@@ -76,8 +76,47 @@ public class PlayerController : MonoBehaviour
         _rb.useGravity = false; //Tắt trọng lực
         ChangeAnimationState(AnimationState.Climb);
 
-        float extraClimbHeight = 0.3f;
+        float extraClimbHeight = 0.4f; // Leo lên thì bay lên thêm, tránh bị kẹt
+        float stepForwardDistance = 0.5f; // Khoảng cách tiến lên phía trước tránh kẹt mép
         RaycastHit hit;
+
+        Vector3 climbSurfaceNormal = Vector3.zero; // Lưu lại hướng của bề mặt leo
+
+        //------------------------------------------------------------
+        //while (true)
+        //{
+        //    // Lấy giá trị joystick
+        //    Vector2 joystickInput = _playerJoystick.GetMoveVector();
+
+        //    // Nếu người chơi buông joystick, dừng leo ngay lập tức
+        //    if (joystickInput.magnitude < 0.1f) // Kiểm tra nếu joystick không được đẩy
+        //    {
+        //        break;
+        //    }
+
+        //    // Tính hướng di chuyển dựa trên joystick
+        //    Vector3 climbDirection = new Vector3(joystickInput.x, 0, joystickInput.y).normalized;
+
+        //    // Kiểm tra nếu nhân vật vẫn đang chạm Climbable bằng Raycast
+        //    if (Physics.Raycast(transform.position, climbDirection, out hit, _checkForClimbable._rayDistance, _checkForClimbable._climbableLayer))
+        //    {
+        //        transform.position += Vector3.up * _climbSpeed * Time.deltaTime;
+        //        yield return null;
+        //    }
+        //    else
+        //    {
+        //        // Khi không còn Climbable, leo thêm một đoạn nhỏ rồi dừng lại
+        //        float finalHeight = transform.position.y + extraClimbHeight;
+        //        while (transform.position.y < finalHeight)
+        //        {
+        //            transform.position += Vector3.up * _climbSpeed * Time.deltaTime;
+        //            yield return null;
+        //        }
+        //        break;
+        //    }
+        //    yield return null; // Chờ frame tiếp theo
+        //}
+        //-----------------------------------------------------------------
 
         //tiếp tục leo nếu Raycast còn check được Layer Climbable
         while (Physics.Raycast(transform.position, transform.forward, out hit, _checkForClimbable._rayDistance, _checkForClimbable._climbableLayer))
@@ -94,9 +133,23 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
+        // 🔹 Bước tới theo hướng của bề mặt leo
+        if (climbSurfaceNormal != Vector3.zero)
+        {
+            Vector3 stepForwardDirection = -climbSurfaceNormal; // Hướng tiến lên là ngược lại bề mặt leo
+            Vector3 targetPosition = transform.position + stepForwardDirection * stepForwardDistance;
+            float moveSpeed = 2f; // Tốc độ bước tới
+
+            while (Vector3.Distance(transform.position, targetPosition) > 0.05f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
+
         _rb.useGravity = true; // Bật lại trọng lực sau khi leo lên
         _isClimbing = false;
-        ChangeAnimationState(AnimationState.Idle);
+        //ChangeAnimationState(AnimationState.Idle);
     }
 
     void ChangeAnimationState(AnimationState newState)
