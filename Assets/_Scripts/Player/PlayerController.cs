@@ -17,26 +17,31 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private GameObject _model; // Dùng để xoay _model theo hướng di chuyển
 
-    [SerializeField] private float climbSpeed; // Tốc độ leo lên
-    [SerializeField] private float jumpForce; // Lực nhảy
+    [SerializeField] private float _climbSpeed; // Tốc độ leo lên
+    [SerializeField] private CheckForClimbable _checkForClimbable;
 
-    private Rigidbody rb;
-    private Animator animator;
-    private bool isClimbing;
-    private bool isJumping;
-    private bool isGrounded;
-    private bool isFalling;
-    private AnimationState currentState; // Chuyển State Animation bằng String
+    private Rigidbody _rb;
+    private Animator _animator;
+    private bool _isClimbing;
+    private AnimationState _currentState; // Chuyển State Animation bằng String
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>(); // Tìm Animator trong Object con
+        _rb = GetComponent<Rigidbody>();
+        _checkForClimbable = GetComponent<CheckForClimbable>();
+        _animator = GetComponentInChildren<Animator>(); // Tìm Animator trong Object con
     }
 
     void Update()
     {
-        PlayerMove();
+        if (_checkForClimbable._canClimb && !_isClimbing)
+        {
+            StartCoroutine(ClimbUp());
+        }
+        else
+        {
+            PlayerMove();
+        }
     }
 
     void PlayerMove()
@@ -46,7 +51,7 @@ public class PlayerController : MonoBehaviour
         Vector3 move = new Vector3(input.x, 0, input.y) * _moveSpeed * Time.deltaTime;
 
         // Di chuyển nhân vật
-        rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+        _rb.linearVelocity = new Vector3(move.x, _rb.linearVelocity.y, move.z);
 
         //xoay nhân vật theo hướng chuyển động
         if (move != Vector3.zero)
@@ -65,14 +70,43 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    IEnumerator ClimbUp()
+    {
+        _isClimbing = true;
+        _rb.useGravity = false; //Tắt trọng lực
+        ChangeAnimationState(AnimationState.Climb);
+
+        float extraClimbHeight = 0.3f;
+        RaycastHit hit;
+
+        //tiếp tục leo nếu Raycast còn check được Layer Climbable
+        while (Physics.Raycast(transform.position, transform.forward, out hit, _checkForClimbable._rayDistance, _checkForClimbable._climbableLayer))
+        {
+            transform.position += Vector3.up * _climbSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        // Khi không còn Climbable, leo thêm một đoạn nhỏ
+        float finalHeight = transform.position.y + extraClimbHeight;
+        while (transform.position.y < finalHeight)
+        {
+            transform.position += Vector3.up * _climbSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        _rb.useGravity = true; // Bật lại trọng lực sau khi leo lên
+        _isClimbing = false;
+        ChangeAnimationState(AnimationState.Idle);
+    }
+
     void ChangeAnimationState(AnimationState newState)
     {
-        if (currentState == newState) return;
+        if (_currentState == newState) return;
 
-        if (animator != null) // Kiểm tra nếu Animator đã được tìm thấy
+        if (_animator != null) // Kiểm tra nếu Animator đã được tìm thấy
         {
-            animator.Play(newState.ToString()); // Đặt Animation theo tên Enum
-            currentState = newState;
+            _animator.Play(newState.ToString()); // Đặt Animation theo tên Enum
+            _currentState = newState;
         }
         else
         {

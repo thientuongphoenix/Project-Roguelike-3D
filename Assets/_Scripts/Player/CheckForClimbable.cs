@@ -2,10 +2,12 @@
 
 public class CheckForClimbable : MonoBehaviour
 {
-    [SerializeField] private float _rayDistance;
-    [SerializeField] private LayerMask _climbableLayer;
+    [SerializeField] public float _rayDistance;
+    [SerializeField] public LayerMask _climbableLayer;
     [SerializeField] private Transform _model; // Gán Model trong Inspector
     private SphereCollider _playerCollider;
+
+    public bool _canClimb { get; private set; }
 
     void Start()
     {
@@ -29,10 +31,12 @@ public class CheckForClimbable : MonoBehaviour
         {
             Debug.Log("Phát hiện vật thể phía trước: " + hit.collider.name);
             Debug.DrawRay(startPosition, direction * hit.distance, Color.red); // Vẽ ray khi có va chạm
+            _canClimb = true; // Cho phép leo
         }
         else
         {
             Debug.DrawRay(startPosition, direction * _rayDistance, Color.green); // Vẽ ray không có va chạm
+            _canClimb = false;
         }
     }
 }
