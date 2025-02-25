@@ -1,40 +1,46 @@
 ﻿using System.Collections;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public enum AnimationState
 {
     Idle,
     Move,
-    Climb
+    Climb,
+    Jump,
+    Fly
 }
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private MobileJoystick _playerJoystick;
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private GameObject _model; // Dùng để xoay model theo hướng di chuyển
+    [SerializeField] private GameObject _model; // Dùng để xoay _model theo hướng di chuyển
 
-    [SerializeField] private LayerMask climbableLayer; // Layer của các vật có thể leo lên
-    [SerializeField] private float climbHeight; // Chiều cao tối đa có thể leo
-    [SerializeField] private float climbSpeed; // Tốc độ leo lên
+    [SerializeField] private float _climbSpeed; // Tốc độ leo lên
+    [SerializeField] private CheckForClimbable _checkForClimbable;
 
-    private Rigidbody rb;
-    private Animator animator;
-    private bool isClimbing;
-    private AnimationState currentState; // Chuyển State Animation bằng String
+    private Rigidbody _rb;
+    private Animator _animator;
+    private bool _isClimbing;
+    private AnimationState _currentState; // Chuyển State Animation bằng String
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>(); // Tìm Animator trong Object con
+        _rb = GetComponent<Rigidbody>();
+        _checkForClimbable = GetComponent<CheckForClimbable>();
+        _animator = GetComponentInChildren<Animator>(); // Tìm Animator trong Object con
     }
 
     void Update()
     {
-        if (!isClimbing) // Nếu không đang leo thì cho phép di chuyển
+        if (_checkForClimbable._canClimb && !_isClimbing)
+        {
+            StartCoroutine(ClimbUp());
+        }
+        else
         {
             PlayerMove();
-            CheckForClimbable();
         }
     }
 
@@ -45,7 +51,7 @@ public class PlayerController : MonoBehaviour
         Vector3 move = new Vector3(input.x, 0, input.y) * _moveSpeed * Time.deltaTime;
 
         // Di chuyển nhân vật
-        rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+        _rb.linearVelocity = new Vector3(move.x, _rb.linearVelocity.y, move.z);
 
         //xoay nhân vật theo hướng chuyển động
         if (move != Vector3.zero)
@@ -64,54 +70,106 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CheckForClimbable()
+    IEnumerator ClimbUp()
     {
-        // Tạo một raycast phía trước nhân vật
-        RaycastHit hit;
-        Vector3 rayStart = transform.position + Vector3.up * 0.5f; // Điểm bắn ray từ trước nhân vật
-        Vector3 rayDirection = transform.forward;
-
-        if (Physics.Raycast(rayStart, rayDirection, out hit, 1f, climbableLayer))
-        {
-            float obstacleHeight = hit.point.y - transform.position.y;
-
-            if (obstacleHeight > 0.3f && obstacleHeight <= climbHeight) // Chỉ leo khi chiều cao hợp lý
-            {
-                StartCoroutine(ClimbObstacle(hit.point.y));
-            }
-        }
-    }
-
-    IEnumerator ClimbObstacle(float targetY)
-    {
-        isClimbing = true;
-        rb.linearVelocity = Vector3.zero; // Dừng di chuyển
+        _isClimbing = true;
+        _rb.useGravity = false; //Tắt trọng lực
         ChangeAnimationState(AnimationState.Climb);
 
-        float startY = transform.position.y;
-        float elapsedTime = 0f;
+        float extraClimbHeight = 0.4f; // Leo lên thì bay lên thêm, tránh bị kẹt
+        float stepForwardDistance = 0.5f; // Khoảng cách tiến lên phía trước tránh kẹt mép
+        float pushForce = 3f; // Lực đẩy nhẹ để nhân vật không bị dính vào tường
+        RaycastHit hit;
 
-        while (elapsedTime < 1f)
+        Vector3 climbSurfaceNormal = Vector3.zero; // Lưu lại hướng của bề mặt leo
+
+        //while (true)
+        //{
+        //    // Kiểm tra joystick: Nếu buông tay thì dừng leo ngay và rớt xuống
+        //    Vector2 joystickInput = _playerJoystick.GetMoveVector();
+        //    if (joystickInput.magnitude < 0.1f) // Nếu joystick không có input
+        //    {
+        //        Debug.Log("Joystick thả ra → Nhân vật rơi xuống!");
+
+        //        //// Đẩy nhân vật ra khỏi vách trước khi rơi
+        //        //if (climbSurfaceNormal != Vector3.zero)
+        //        //{
+        //        //    Vector3 pushDirection = -climbSurfaceNormal; // Đẩy theo hướng pháp tuyến ngược lại
+        //        //    _rb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
+        //        //}
+
+        //        _rb.useGravity = true;
+        //        _isClimbing = false;
+        //        ChangeAnimationState(AnimationState.Idle);
+        //        yield break; // Thoát Coroutine ngay lập tức
+        //    }
+
+        //    // Xác định hướng di chuyển từ joystick
+        //    Vector3 climbDirection = new Vector3(joystickInput.x, 0, joystickInput.y).normalized;
+
+        //    // Nếu vẫn chạm Climbable, tiếp tục leo
+        //    if (Physics.Raycast(transform.position, climbDirection, out hit, _checkForClimbable._rayDistance, _checkForClimbable._climbableLayer))
+        //    {
+        //        transform.position += Vector3.up * _climbSpeed * Time.deltaTime;
+        //        climbSurfaceNormal = hit.normal; // Lưu lại hướng pháp tuyến của bề mặt leo
+        //    }
+        //    else
+        //    {
+        //        // Khi không còn Climbable, leo thêm một đoạn nhỏ rồi dừng lại
+        //        float finalHeight = transform.position.y + extraClimbHeight;
+        //        while (transform.position.y < finalHeight)
+        //        {
+        //            transform.position += Vector3.up * _climbSpeed * Time.deltaTime;
+        //            yield return null;
+        //        }
+        //        break;
+        //    }
+
+        //    yield return null; // Chờ frame tiếp theo
+        //}
+
+        //tiếp tục leo nếu Raycast còn check được Layer Climbable
+        while (Physics.Raycast(transform.position, transform.forward, out hit, _checkForClimbable._rayDistance, _checkForClimbable._climbableLayer))
         {
-            float newY = Mathf.Lerp(startY, targetY + 1f, elapsedTime);
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
-            elapsedTime += Time.deltaTime * climbSpeed;
+            transform.position += Vector3.up * _climbSpeed * Time.deltaTime;
             yield return null;
         }
 
-        transform.position = new Vector3(transform.position.x, targetY + 1f, transform.position.z);
-        isClimbing = false;
-        ChangeAnimationState(AnimationState.Idle);
+        // Khi không còn Climbable, leo thêm một đoạn nhỏ
+        float finalHeight = transform.position.y + extraClimbHeight;
+        while (transform.position.y < finalHeight)
+        {
+            transform.position += Vector3.up * _climbSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        // Bước tới theo hướng của bề mặt leo
+        if (climbSurfaceNormal != Vector3.zero)
+        {
+            Vector3 stepForwardDirection = -climbSurfaceNormal; // Hướng tiến lên là ngược lại bề mặt leo
+            Vector3 targetPosition = transform.position + stepForwardDirection * stepForwardDistance;
+            float moveSpeed = 2f; // Tốc độ bước tới
+
+            while (Vector3.Distance(transform.position, targetPosition) > 0.05f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
+
+        _rb.useGravity = true; // Bật lại trọng lực sau khi leo lên
+        _isClimbing = false;
+        //ChangeAnimationState(AnimationState.Idle);
     }
 
     void ChangeAnimationState(AnimationState newState)
     {
-        if (currentState == newState) return;
+        if (_currentState == newState) return;
 
-        if (animator != null) // Kiểm tra nếu Animator đã được tìm thấy
+        if (_animator != null) // Kiểm tra nếu Animator đã được tìm thấy
         {
-            animator.Play(newState.ToString()); // Đặt Animation theo tên Enum
-            currentState = newState;
+            _animator.Play(newState.ToString()); // Đặt Animation theo tên Enum
+            _currentState = newState;
         }
         else
         {
