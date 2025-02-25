@@ -29,7 +29,7 @@ public class CheckForClimbable : MonoBehaviour
 
         if (Physics.Raycast(startPosition, direction, out hit, _rayDistance, _climbableLayer))
         {
-            Debug.Log("Phát hiện vật thể phía trước: " + hit.collider.name);
+            //Debug.Log("Phát hiện vật thể phía trước: " + hit.collider.name);
             Debug.DrawRay(startPosition, direction * hit.distance, Color.red); // Vẽ ray khi có va chạm
             _canClimb = true; // Cho phép leo
         }
