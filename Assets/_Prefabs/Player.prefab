@@ -113,6 +113,8 @@ GameObject:
   - component: {fileID: 1840472756036838832}
   - component: {fileID: 5837952886037434216}
   - component: {fileID: 6853856634971035069}
+  - component: {fileID: 672410217669923841}
+  - component: {fileID: 6690143061531686977}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -218,6 +220,33 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _model: {fileID: 5868694804507359162}
+--- !u!114 &672410217669923841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654455387119150344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0000b20707697aa4a8e9e0c2d7893573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxWeapons: 4
+--- !u!114 &6690143061531686977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654455387119150344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9790845c1866ff4991137ab99bf6b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPrefab: {fileID: 1774014928040771565, guid: f47a3183289b9dd47a40be8992e7b07d, type: 3}
+  spawnOffset: 0.2
 --- !u!1 &1676413824541589984
 GameObject:
   m_ObjectHideFlags: 0

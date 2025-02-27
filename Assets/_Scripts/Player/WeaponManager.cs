@@ -8,6 +8,7 @@ public class WeaponManager : MonoBehaviour
     private List<GameObject> _activeWeapons = new List<GameObject>(); // Danh sách vũ khí đang có
 
     private CreateWeaponAttachmentPoint spawnPointManager;
+    public float spawnOffset = 0.5f; // Khoảng cách giữa nhân vật và vũ khí
 
     void Start()
     {
@@ -37,9 +38,15 @@ public class WeaponManager : MonoBehaviour
         }
 
         int nextIndex = _activeWeapons.Count;
-        Vector3 spawnPosition = _weaponSpawnPoints[nextIndex].position;
+        Transform spawnTransform = _weaponSpawnPoints[nextIndex]; // Fix lỗi: Khai báo spawnTransform
 
-        GameObject newWeapon = Instantiate(weaponPrefab, spawnPosition, Quaternion.identity, transform);
+        // Tính vector hướng từ nhân vật đến điểm spawn
+        Vector3 direction = (spawnTransform.position - transform.position).normalized;
+
+        // Dịch ra xa thêm một khoảng spawnOffset
+        Vector3 finalSpawnPosition = spawnTransform.position + direction * spawnOffset; // Fix lỗi: đổi tên biến để tránh trùng
+
+        GameObject newWeapon = Instantiate(weaponPrefab, finalSpawnPosition, weaponPrefab.transform.rotation, transform);
         _activeWeapons.Add(newWeapon);
     }
 
