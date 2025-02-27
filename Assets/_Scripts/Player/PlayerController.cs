@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using static UnityEngine.AudioSettings;
+using UnityEngine.InputSystem;
 
 public enum AnimationState
 {
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _playerJoystick = Object.FindFirstObjectByType<MobileJoystick>();
         _checkForClimbable = GetComponent<CheckForClimbable>();
         _animator = GetComponentInChildren<Animator>(); // Tìm Animator trong Object con
     }
@@ -78,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
         float extraClimbHeight = 0.4f; // Leo lên thì bay lên thêm, tránh bị kẹt
         float stepForwardDistance = 0.5f; // Khoảng cách tiến lên phía trước tránh kẹt mép
-        float pushForce = 3f; // Lực đẩy nhẹ để nhân vật không bị dính vào tường
+        //float pushForce = 3f; // Lực đẩy nhẹ để nhân vật không bị dính vào tường
         RaycastHit hit;
 
         Vector3 climbSurfaceNormal = Vector3.zero; // Lưu lại hướng của bề mặt leo
