@@ -1048,7 +1048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1320328926
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1095,7 +1095,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 6bd18552219ee08419fcca2575a8d40b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1501,9 +1501,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1654455387119150344, guid: 65bd3502f0822ff44a095bb2c5bd0fce, type: 3}
-      propertyPath: m_TagString
-      value: Player
+    - target: {fileID: 4821252369351280391, guid: 65bd3502f0822ff44a095bb2c5bd0fce, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821252369351280391, guid: 65bd3502f0822ff44a095bb2c5bd0fce, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7218425982818557846, guid: 65bd3502f0822ff44a095bb2c5bd0fce, type: 3}
       propertyPath: m_LocalPosition.x
