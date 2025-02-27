@@ -86,51 +86,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 climbSurfaceNormal = Vector3.zero; // Lưu lại hướng của bề mặt leo
 
-        //while (true)
-        //{
-        //    // Kiểm tra joystick: Nếu buông tay thì dừng leo ngay và rớt xuống
-        //    Vector2 joystickInput = _playerJoystick.GetMoveVector();
-        //    if (joystickInput.magnitude < 0.1f) // Nếu joystick không có input
-        //    {
-        //        Debug.Log("Joystick thả ra → Nhân vật rơi xuống!");
-
-        //        //// Đẩy nhân vật ra khỏi vách trước khi rơi
-        //        //if (climbSurfaceNormal != Vector3.zero)
-        //        //{
-        //        //    Vector3 pushDirection = -climbSurfaceNormal; // Đẩy theo hướng pháp tuyến ngược lại
-        //        //    _rb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
-        //        //}
-
-        //        _rb.useGravity = true;
-        //        _isClimbing = false;
-        //        ChangeAnimationState(AnimationState.Idle);
-        //        yield break; // Thoát Coroutine ngay lập tức
-        //    }
-
-        //    // Xác định hướng di chuyển từ joystick
-        //    Vector3 climbDirection = new Vector3(joystickInput.x, 0, joystickInput.y).normalized;
-
-        //    // Nếu vẫn chạm Climbable, tiếp tục leo
-        //    if (Physics.Raycast(transform.position, climbDirection, out hit, _checkForClimbable._rayDistance, _checkForClimbable._climbableLayer))
-        //    {
-        //        transform.position += Vector3.up * _climbSpeed * Time.deltaTime;
-        //        climbSurfaceNormal = hit.normal; // Lưu lại hướng pháp tuyến của bề mặt leo
-        //    }
-        //    else
-        //    {
-        //        // Khi không còn Climbable, leo thêm một đoạn nhỏ rồi dừng lại
-        //        float finalHeight = transform.position.y + extraClimbHeight;
-        //        while (transform.position.y < finalHeight)
-        //        {
-        //            transform.position += Vector3.up * _climbSpeed * Time.deltaTime;
-        //            yield return null;
-        //        }
-        //        break;
-        //    }
-
-        //    yield return null; // Chờ frame tiếp theo
-        //}
-
         //tiếp tục leo nếu Raycast còn check được Layer Climbable
         while (Physics.Raycast(transform.position, transform.forward, out hit, _checkForClimbable._rayDistance, _checkForClimbable._climbableLayer))
         {
