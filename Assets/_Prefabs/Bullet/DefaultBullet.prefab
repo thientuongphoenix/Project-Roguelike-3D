@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6549256659186963359}
   - component: {fileID: 4273760568987771800}
   - component: {fileID: 5681876151048695781}
+  - component: {fileID: 7545095396796192247}
   m_Layer: 0
   m_Name: DefaultBullet
   m_TagString: Untagged
@@ -75,6 +76,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &7545095396796192247
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921076108878798791}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.01594007
+  m_Height: 0.09751652
+  m_Direction: 1
+  m_Center: {x: -0.0010923147, y: -0.00060706586, z: 0}
 --- !u!1 &4255034663176355898
 GameObject:
   m_ObjectHideFlags: 0
