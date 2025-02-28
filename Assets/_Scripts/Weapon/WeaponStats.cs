@@ -14,8 +14,9 @@ public class WeaponStats : ScriptableObject
     public float detectionRange; // Tầm phát hiện enemy
     public float damage; // Sát thương
     public float criticalChance; // Tỉ lệ chí mạng (0-1)
+    public float fireCooldown;
 
     [Header("Bullet Settings")]
-    //public GameObject bulletPrefab;
+    public GameObject bulletPrefab;
     public float bulletSpeed;
 }
