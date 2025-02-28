@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1994830512763787188}
   - component: {fileID: 2926972438313963589}
   - component: {fileID: 2747924062928158183}
+  - component: {fileID: 5749576039889732141}
   m_Layer: 0
   m_Name: DefaultWeapon
   m_TagString: Untagged
@@ -86,3 +87,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5749576039889732141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774014928040771565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a3c50aa9462abb468473b1eb8f6f094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponStats: {fileID: 11400000, guid: 49b6e512b76643845a5c8496ab1e3eeb, type: 2}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
