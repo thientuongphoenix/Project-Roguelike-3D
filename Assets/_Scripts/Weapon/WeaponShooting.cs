@@ -30,13 +30,31 @@ public class WeaponShooting : MonoBehaviour
 
     void Fire(Transform target)
     {
-        GameObject bullet = Instantiate(weaponStats.bulletPrefab, firePoint.position, Quaternion.identity);
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        if (weaponStats.bulletPrefab == null)
+        {
+            Debug.LogError("WeaponShooting: Chưa gán Bullet Prefab trong WeaponStats!");
+            return;
+        }
 
+        // Tính hướng từ súng đến mục tiêu
+        Vector3 direction = (target.position - firePoint.position).normalized;
+
+        // Xoay đạn đúng hướng mục tiêu
+        Quaternion bulletRotation = Quaternion.LookRotation(direction);
+        bulletRotation *= Quaternion.Euler(-90, 0, 0); // Điều chỉnh góc nếu cần
+
+        // Tạo viên đạn với góc xoay đúng
+        GameObject bullet = Instantiate(weaponStats.bulletPrefab, firePoint.position, bulletRotation);
+
+        // Gán vận tốc cho viên đạn
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            Vector3 direction = (target.position - firePoint.position).normalized;
             rb.linearVelocity = direction * weaponStats.bulletSpeed;
+        }
+        else
+        {
+            Debug.LogError("Bullet Prefab không có Rigidbody!");
         }
 
         Debug.Log("Bắn vào: " + target.name);
