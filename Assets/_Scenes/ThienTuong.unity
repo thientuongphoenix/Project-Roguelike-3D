@@ -2148,8 +2148,8 @@ RectTransform:
   - {fileID: 1322121861}
   - {fileID: 908151958}
   - {fileID: 1183012766}
-  - {fileID: 1453079487}
   - {fileID: 1527616501}
+  - {fileID: 1453079487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2314,7 +2314,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1226004463}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1453079490}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: ApplyUpgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1226004463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2814,7 +2826,7 @@ GameObject:
   - component: {fileID: 1359150334}
   - component: {fileID: 1359150333}
   m_Layer: 5
-  m_Name: ButtonUpgrade1 (2)
+  m_Name: ButtonUpgrade3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2883,7 +2895,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1359150334}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1453079490}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: ApplyUpgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1359150334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2933,6 +2957,7 @@ GameObject:
   - component: {fileID: 1453079487}
   - component: {fileID: 1453079488}
   - component: {fileID: 1453079489}
+  - component: {fileID: 1453079490}
   m_Layer: 5
   m_Name: UI_Manager
   m_TagString: Untagged
@@ -2988,6 +3013,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveText: {fileID: 435833931}
   timerText: {fileID: 1912070068}
+--- !u!114 &1453079490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453079486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be068a1908dca164a82c293249018b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats: {fileID: 11400000, guid: f438aba9261f4a04d81fccee8d6cdb8a, type: 2}
+  upgradeUI: {fileID: 1527616500}
+  upgradeButtons:
+  - {fileID: 263231431}
+  - {fileID: 1027317129}
+  - {fileID: 1001974936}
 --- !u!1 &1527616500
 GameObject:
   m_ObjectHideFlags: 0
@@ -3005,7 +3048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1527616501
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3816,7 +3859,7 @@ GameObject:
   - component: {fileID: 1930434928}
   - component: {fileID: 1930434927}
   m_Layer: 5
-  m_Name: ButtonUpgrade1 (1)
+  m_Name: ButtonUpgrade2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3885,7 +3928,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1930434928}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1453079490}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: ApplyUpgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1930434928
 MonoBehaviour:
   m_ObjectHideFlags: 0

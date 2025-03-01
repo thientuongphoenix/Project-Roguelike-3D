@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9790845c1866ff4991137ab99bf6b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 1774014928040771565, guid: f47a3183289b9dd47a40be8992e7b07d, type: 3}
+  weaponStats: {fileID: 11400000, guid: 49b6e512b76643845a5c8496ab1e3eeb, type: 2}
   spawnOffset: 0.2
 --- !u!114 &887053768915704187
 MonoBehaviour:
