@@ -16,9 +16,9 @@ public enum StatType
 public struct UpgradeOption
 {
     public StatType statType; // Loại stat được nâng cấp
-    public float amount; // Giá trị tăng thêm
+    public int amount; // Giá trị tăng thêm
 
-    public UpgradeOption(StatType type, float value)
+    public UpgradeOption(StatType type, int value)
     {
         statType = type;
         amount = value;
@@ -52,7 +52,7 @@ public class UpgradeManager : MonoBehaviour
         for (int i = 0; i < 3; i++) // 3 lựa chọn ngẫu nhiên
         {
             StatType randomStat = (StatType)Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length);
-            float randomValue = Random.Range(5f, 10f); // Giá trị ngẫu nhiên
+            int randomValue = Random.Range(5, 10); // Giá trị ngẫu nhiên
 
             upgradeOptions.Add(new UpgradeOption(randomStat, randomValue));
         }
@@ -80,7 +80,7 @@ public class UpgradeManager : MonoBehaviour
                 playerStats.Health += chosenUpgrade.amount;
                 break;
             case StatType.Speed:
-                playerStats.Speed += (int)chosenUpgrade.amount;
+                playerStats.Speed += chosenUpgrade.amount;
                 break;
             case StatType.Armor:
                 playerStats.Armor += chosenUpgrade.amount;

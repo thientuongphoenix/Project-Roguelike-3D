@@ -11,16 +11,16 @@ public class PlayerStats : ScriptableObject
     public int Speed;
 
     [Header("Health")]
-    public float Health;
-    public float MaxHealth;
+    public int Health;
+    public int MaxHealth;
 
     [Header("Armor")]
-    public float Armor;
+    public int Armor;
 
     [Header("Shield")]
-    public float Shield;
-    public float MaxShield;
+    public int Shield;
+    public int MaxShield;
 
     [Header("Dodge")]
-    public float Dodge;
+    public int Dodge;
 }

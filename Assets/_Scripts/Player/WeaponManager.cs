@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public GameObject weaponPrefab; // Prefab vũ khí
+    public WeaponStats weaponStats;
+    //public GameObject weaponPrefab; // Prefab vũ khí
     private List<Transform> _weaponSpawnPoints; // Danh sách điểm spawn
     private List<GameObject> _activeWeapons = new List<GameObject>(); // Danh sách vũ khí đang có
 
@@ -46,7 +47,7 @@ public class WeaponManager : MonoBehaviour
         // Dịch ra xa thêm một khoảng spawnOffset
         Vector3 finalSpawnPosition = spawnTransform.position + direction * spawnOffset; // Fix lỗi: đổi tên biến để tránh trùng
 
-        GameObject newWeapon = Instantiate(weaponPrefab, finalSpawnPosition, weaponPrefab.transform.rotation, transform);
+        GameObject newWeapon = Instantiate(weaponStats.weaponPrefab, finalSpawnPosition, weaponStats.weaponPrefab.transform.rotation, transform);
         _activeWeapons.Add(newWeapon);
     }
 
