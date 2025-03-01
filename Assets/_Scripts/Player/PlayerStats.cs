@@ -5,21 +5,23 @@ public class PlayerStats : ScriptableObject
 {
     [Header("Config")]
     public int Level;
+    public int TotalExp;
+
+    [Header("MoveSpeed")]
+    public int Speed;
 
     [Header("Health")]
     public float Health;
     public float MaxHealth;
 
-    //[Header("Mana")]
-    //public float Mana;
-    //public float MaxMana;
+    [Header("Armor")]
+    public float Armor;
+    public float MaxArmor;
 
-    //[Header("Attack")]
-    //public float BaseDamage;
-    //public float CriticalChance;
-    //public float CriticalDamage;
+    [Header("Shield")]
+    public float Shield;
+    public float MaxShield;
 
-    //[Header("Armor")]
-    //public float Armor;
-    //public float MaxArmor;
+    [Header("Dodge")]
+    public float Dodge;
 }

@@ -13,7 +13,8 @@ public class WeaponStats : ScriptableObject
     public float fireRate; // Tốc độ bắn (số phát bắn mỗi giây)
     public float detectionRange; // Tầm phát hiện enemy
     public float damage; // Sát thương
-    public float criticalChance; // Tỉ lệ chí mạng (0-1)
+    public float CritChance;
+    public float CritDamage;
     public float fireCooldown;
 
     [Header("Bullet Settings")]

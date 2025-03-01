@@ -16,11 +16,12 @@ public enum AnimationState
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private MobileJoystick _playerJoystick;
-    [SerializeField] private float _moveSpeed;
+    //[SerializeField] private float _moveSpeed;
     [SerializeField] private GameObject _model; // Dùng để xoay _model theo hướng di chuyển
 
     [SerializeField] private float _climbSpeed; // Tốc độ leo lên
     [SerializeField] private CheckForClimbable _checkForClimbable;
+    [SerializeField] private PlayerStats playerStats;
 
     private Rigidbody _rb;
     private Animator _animator;
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         // Lấy giá trị từ joystick (chỉ dùng X, Z vì game 3D)
         Vector2 input = _playerJoystick.GetMoveVector();
-        Vector3 move = new Vector3(input.x, 0, input.y) * _moveSpeed * Time.deltaTime;
+        Vector3 move = new Vector3(input.x, 0, input.y) * playerStats.Speed * Time.deltaTime;
 
         // Di chuyển nhân vật
         _rb.linearVelocity = new Vector3(move.x, _rb.linearVelocity.y, move.z);
