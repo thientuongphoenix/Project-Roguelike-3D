@@ -2145,6 +2145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1453079487}
   - component: {fileID: 1453079488}
+  - component: {fileID: 1453079489}
   m_Layer: 5
   m_Name: UI_Manager
   m_TagString: Untagged
@@ -2186,6 +2187,20 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: f438aba9261f4a04d81fccee8d6cdb8a, type: 2}
   levelText: {fileID: 2110868142}
   expSlider: {fileID: 2081303168}
+--- !u!114 &1453079489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453079486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c27fa7d0306584bbb016f2411bd242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveText: {fileID: 435833931}
+  timerText: {fileID: 1912070068}
 --- !u!1 &1558812232
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,6 +3483,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 996205047687515581, guid: cca1697b04a5ad24092dc5656a690d22, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 996205047687515581, guid: cca1697b04a5ad24092dc5656a690d22, type: 3}
+      propertyPath: m_TagString
+      value: Block
+      objectReference: {fileID: 0}
     - target: {fileID: 9165632221203255878, guid: cca1697b04a5ad24092dc5656a690d22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.644
@@ -3521,6 +3544,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 887053768915704187, guid: 65bd3502f0822ff44a095bb2c5bd0fce, type: 3}
+      propertyPath: blockText
+      value: 
+      objectReference: {fileID: 700009409}
     - target: {fileID: 1654455387119150344, guid: 65bd3502f0822ff44a095bb2c5bd0fce, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3533,10 +3560,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5837952886037434216, guid: 65bd3502f0822ff44a095bb2c5bd0fce, type: 3}
-      propertyPath: playerStats
-      value: 
-      objectReference: {fileID: 11400000, guid: f438aba9261f4a04d81fccee8d6cdb8a, type: 2}
     - target: {fileID: 5837952886037434216, guid: 65bd3502f0822ff44a095bb2c5bd0fce, type: 3}
       propertyPath: _playerJoystick
       value: 
