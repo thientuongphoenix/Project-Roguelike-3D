@@ -16,7 +16,6 @@ public class PlayerStats : ScriptableObject
 
     [Header("Armor")]
     public float Armor;
-    public float MaxArmor;
 
     [Header("Shield")]
     public float Shield;
