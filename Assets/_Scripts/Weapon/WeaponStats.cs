@@ -5,8 +5,8 @@ public class WeaponStats : ScriptableObject
 {
     [Header("Basic Stats")]
     public string weaponName;
-    //public Sprite weaponIcon;
-    //public GameObject weaponPrefab;
+    public Sprite weaponIcon;
+    public GameObject weaponPrefab;
 
     [Header("Weapon Stats")]
     public float range; // Tầm bắn
