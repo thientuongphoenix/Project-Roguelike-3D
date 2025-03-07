@@ -5,7 +5,7 @@ public enum EnemyAnimationState
     Idle,
     Move,
     Attack,
-    Climb,
+    Damage,
     Die,
     Attack0
 }
