@@ -26,12 +26,16 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
     {
         if (player != null)
         {
-            agent.SetDestination(player.position);
-
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            // Nếu trong phạm vi tấn công và có thể đánh
             if (distanceToPlayer <= enemyStats.attackRange && canAttack)
             {
                 StartCoroutine(AttackPlayer());
+            }
+            else
+            {
+                agent.SetDestination(player.position); // Tiếp tục di chuyển đến Player
             }
         }
     }
@@ -39,7 +43,12 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
     IEnumerator AttackPlayer()
     {
         canAttack = false;
-        //Debug.Log(gameObject.name + " tấn công Player!");
+        agent.isStopped = true; // 🛑 Dừng di chuyển để đảm bảo animation Attack không bị cắt
+        enemyAnim.ChangeAnimationState(EnemyAnimationState.Attack);
+
+        // Chờ animation Attack hoàn tất trước khi gây sát thương
+        float attackAnimationLength = 1.0f; // ⏳ Thời gian animation
+        yield return new WaitForSeconds(attackAnimationLength * 0.5f); // 💭 Đợi nửa thời gian trước khi gây sát thương
 
         // Kiểm tra xem Player có trong tầm đánh không
         Collider[] hitPlayers = Physics.OverlapSphere(attackPoint.position, enemyStats.attackRange, playerLayer);
@@ -48,14 +57,15 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
             PlayerHealth playerHealth = playerCollider.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                enemyAnim.ChangeAnimationState(EnemyAnimationState.Attack);
                 playerHealth.TakeDamage(enemyStats.damage);
-                //Debug.Log("Gây " + enemyStats.damage + " sát thương lên Player");
+                Debug.Log("Gây " + enemyStats.damage + " sát thương lên Player");
             }
-            else enemyAnim.ChangeAnimationState(EnemyAnimationState.Idle);
         }
 
-        yield return new WaitForSeconds(enemyStats.attackCooldown);
+        // Đợi animation hoàn thành trước khi chuyển sang trạng thái khác
+        yield return new WaitForSeconds(attackAnimationLength * 0.5f);
+
+        agent.isStopped = false; // ✅ Bật lại di chuyển
         canAttack = true;
     }
 

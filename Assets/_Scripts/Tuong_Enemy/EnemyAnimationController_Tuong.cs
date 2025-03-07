@@ -6,7 +6,8 @@ public enum EnemyAnimationState
     Move,
     Attack,
     Climb,
-    Die
+    Die,
+    Attack0
 }
 
 public class EnemyAnimationController_Tuong : MonoBehaviour

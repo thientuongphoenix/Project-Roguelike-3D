@@ -32,10 +32,10 @@ public class EnemyNavMesh : MonoBehaviour
         {
             enemyAnim.ChangeAnimationState(EnemyAnimationState.Move);
         }
-        else
-        {
-            enemyAnim.ChangeAnimationState(EnemyAnimationState.Idle);
-        }
+        //else
+        //{
+        //    enemyAnim.ChangeAnimationState(EnemyAnimationState.Idle);
+        //}
     }
 
     void CheckNavMeshPosition()
