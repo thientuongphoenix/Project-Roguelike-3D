@@ -17,31 +17,6 @@ public class PlayerHealth : MonoBehaviour
         UpdateShieldUI();
     }
 
-    //---------------TEST----------------
-    void Update()
-    {
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(20);
-            Debug.Log("Take Damage (Editor)");
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Heal(10);
-            Debug.Log("Heal (Editor)");
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RechargeShield(15);
-            Debug.Log("Recharge Shield (Editor)");
-        }
-#endif
-    }
-
-
     public void TakeDamage(int damage)
     {
         int remainingDamage = damage;

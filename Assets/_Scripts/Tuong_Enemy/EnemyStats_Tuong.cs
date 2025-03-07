@@ -4,8 +4,8 @@
 public class EnemyStats_Tuong : ScriptableObject
 {
     [Header("Attack Type")]
-    public bool isRanged; // Enemy đánh xa?
-    public bool isMelee;  // Enemy đánh gần?
+    public bool isRanged; // Enemy đánh xa
+    public bool isMelee;  // Enemy đánh gần
 
     [Header("Health")]
     public int health;      // Máu hiện tại
@@ -14,4 +14,5 @@ public class EnemyStats_Tuong : ScriptableObject
     [Header("Combat Stats")]
     public int attackRange; // Tầm đánh
     public int damage;      // Sát thương
+    public float attackCooldown; // Delay đòn đánh
 }
