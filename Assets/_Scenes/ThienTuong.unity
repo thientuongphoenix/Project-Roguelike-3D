@@ -1855,7 +1855,7 @@ MonoBehaviour:
   m_TileSize: 256
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
+  m_MinRegionArea: 0
   m_NavMeshData: {fileID: 23800000, guid: 3a35ca69a018db648aac0050be742f70, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &948579738
@@ -1870,7 +1870,8 @@ Transform:
   m_LocalPosition: {x: 14.703587, y: 9.38423, z: 9.33757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1952434866}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &969964101
@@ -2366,7 +2367,6 @@ GameObject:
   - component: {fileID: 1096607934}
   - component: {fileID: 1096607933}
   - component: {fileID: 1096607932}
-  - component: {fileID: 1096607937}
   m_Layer: 6
   m_Name: ClimbableTest
   m_TagString: Untagged
@@ -2490,31 +2490,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1364448206}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1096607937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1096607931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SerializedVersion: 1
-  m_AgentTypeID: -334000983
-  m_StartPoint: {x: 0.13919616, y: -0.70836705, z: -2.4659963}
-  m_EndPoint: {x: 0.13763118, y: 0.8968605, z: -0.8962779}
-  m_StartTransform: {fileID: 0}
-  m_EndTransform: {fileID: 0}
-  m_Activated: 1
-  m_Width: 1.8405092
-  m_CostModifier: 0
-  m_IsOverridingCost: 0
-  m_Bidirectional: 1
-  m_AutoUpdatePosition: 0
-  m_Area: 0
 --- !u!1 &1169926708
 GameObject:
   m_ObjectHideFlags: 0
@@ -4631,6 +4606,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930434925}
   m_CullTransparentMesh: 1
+--- !u!1 &1952434865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1952434866}
+  - component: {fileID: 1952434867}
+  m_Layer: 0
+  m_Name: NavMesh Link
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1952434866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952434865}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.04, y: -9.1, z: -12.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 948579738}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1952434867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952434865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 1
+  m_AgentTypeID: -334000983
+  m_StartPoint: {x: 0.31705236, y: 1.0736485, z: 0.7516341}
+  m_EndPoint: {x: -0.1436472, y: -0.5377456, z: -1.5906515}
+  m_StartTransform: {fileID: 0}
+  m_EndTransform: {fileID: 0}
+  m_Activated: 1
+  m_Width: 0
+  m_CostModifier: 1
+  m_IsOverridingCost: 0
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!1 &1997204909
 GameObject:
   m_ObjectHideFlags: 0
@@ -5532,6 +5564,8 @@ GameObject:
   - component: {fileID: 2781145897111507734}
   - component: {fileID: 2781145897111507737}
   - component: {fileID: 2781145897111507738}
+  - component: {fileID: 2781145897111507739}
+  - component: {fileID: 2781145897111507740}
   m_Layer: 8
   m_Name: Enemy_Golem
   m_TagString: Enemy
@@ -5755,6 +5789,45 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2781145897111507739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781145897101992151}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b97b11db6685ff40b6e48a0b1a54072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbSpeed: 3
+  detectWallDistance: 1.5
+  extraClimbHeight: 0.4
+  stepForwardDistance: 0.5
+  climbableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &2781145897111507740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781145897101992151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b8cf8ea09e7f641b93e49dd9176cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Method: 1
+  m_Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  rb: {fileID: 2781145897111507735}
 --- !u!1001 &3174109723751034000
 PrefabInstance:
   m_ObjectHideFlags: 0
