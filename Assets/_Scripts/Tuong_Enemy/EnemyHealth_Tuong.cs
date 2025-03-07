@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -51,7 +52,7 @@ public class EnemyHealth_Tuong : MonoBehaviour
         }
 
         // ⏳ Chờ thêm 2 giây rồi xoá Enemy
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 }

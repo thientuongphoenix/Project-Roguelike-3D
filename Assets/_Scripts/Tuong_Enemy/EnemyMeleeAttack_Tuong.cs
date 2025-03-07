@@ -24,6 +24,12 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
 
     void Update()
     {
+        // 🛑 Kiểm tra nếu Enemy đã chết, không gọi SetDestination
+        if (enemyStats.health <= 0 || agent == null || !agent.isActiveAndEnabled || !agent.isOnNavMesh)
+        {
+            return;
+        }
+
         if (player != null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);

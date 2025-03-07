@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class EnemyNavMesh : MonoBehaviour
 {
+    public EnemyStats_Tuong enemyStats;
+
     public Transform player;
     private NavMeshAgent agent;
     private EnemyAnimationController_Tuong enemyAnim;
@@ -21,6 +23,12 @@ public class EnemyNavMesh : MonoBehaviour
 
     void Update()
     {
+        //// 🛑 Kiểm tra nếu Enemy đã chết, không gọi SetDestination
+        //if (enemyStats.health <= 0 || agent == null || !agent.isActiveAndEnabled || !agent.isOnNavMesh)
+        //{
+        //    return;
+        //}
+
         CheckNavMeshPosition(); // Kiểm tra nếu Enemy bị rơi khỏi NavMesh
 
         if (player != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
@@ -42,7 +50,7 @@ public class EnemyNavMesh : MonoBehaviour
     {
         if (!agent.isOnNavMesh)
         {
-            Debug.LogWarning($"{gameObject.name} is off NavMesh! Trying to reposition...");
+            //Debug.LogWarning($"{gameObject.name} is off NavMesh! Trying to reposition...");
             RepositionToNavMesh();
         }
     }
@@ -54,7 +62,7 @@ public class EnemyNavMesh : MonoBehaviour
         {
             transform.position = hit.position; // Dịch Enemy về vị trí hợp lệ
             agent.Warp(hit.position); // Đưa AI trở lại NavMesh
-            Debug.Log($"{gameObject.name} repositioned to valid NavMesh area.");
+            //Debug.Log($"{gameObject.name} repositioned to valid NavMesh area.");
         }
         else
         {
