@@ -5564,7 +5564,6 @@ GameObject:
   - component: {fileID: 2781145897111507734}
   - component: {fileID: 2781145897111507737}
   - component: {fileID: 2781145897111507738}
-  - component: {fileID: 2781145897111507739}
   - component: {fileID: 2781145897111507740}
   m_Layer: 8
   m_Name: Enemy_Golem
@@ -5789,25 +5788,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2781145897111507739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781145897101992151}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b97b11db6685ff40b6e48a0b1a54072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  climbSpeed: 3
-  detectWallDistance: 1.5
-  extraClimbHeight: 0.4
-  stepForwardDistance: 0.5
-  climbableLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &2781145897111507740
 MonoBehaviour:
   m_ObjectHideFlags: 0
