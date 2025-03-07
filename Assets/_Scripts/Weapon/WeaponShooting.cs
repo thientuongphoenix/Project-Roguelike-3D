@@ -30,6 +30,14 @@ public class WeaponShooting : MonoBehaviour
 
     void Fire(Transform target)
     {
+        // Kiểm tra Enemy có còn sống không trước khi bắn
+        EnemyHealth_Tuong enemyHealth = target.GetComponent<EnemyHealth_Tuong>();
+        if (enemyHealth == null || enemyHealth.enemyStats.health <= 0)
+        {
+            Debug.Log("Không bắn vì Enemy đã chết!");
+            return; // ⛔ Không bắn nếu Enemy đã chết
+        }
+
         if (weaponStats.bulletPrefab == null)
         {
             Debug.LogError("WeaponShooting: Chưa gán Bullet Prefab trong WeaponStats!");

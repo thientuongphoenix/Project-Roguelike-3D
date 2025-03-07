@@ -34,11 +34,16 @@ public class WeaponDetection : MonoBehaviour
 
         foreach (Transform enemy in detectedEnemies)
         {
-            float distance = Vector3.Distance(position, enemy.position);
-            if (distance < closestDistance)
+            // Kiểm tra Enemy có `EnemyHealth_Tuong` không
+            EnemyHealth_Tuong enemyHealth = enemy.GetComponent<EnemyHealth_Tuong>();
+            if (enemyHealth != null && enemyHealth.enemyStats.health > 0) // 🔹 Chỉ chọn Enemy còn sống
             {
-                closestDistance = distance;
-                closestEnemy = enemy;
+                float distance = Vector3.Distance(position, enemy.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestEnemy = enemy;
+                }
             }
         }
         return closestEnemy;

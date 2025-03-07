@@ -18,9 +18,9 @@ MonoBehaviour:
   range: 3
   fireRate: 2
   detectionRange: 2
-  damage: 5
+  damage: 10
   CritChance: 0
   CritDamage: 0
-  fireCooldown: -2.2715936
+  fireCooldown: -11.316655
   bulletPrefab: {fileID: 1921076108878798791, guid: f78dad5ce5660ba429f496990104082a, type: 3}
   bulletSpeed: 10
