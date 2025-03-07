@@ -80,23 +80,6 @@ public class AgentLinkMover_Enemy_Tuong : MonoBehaviour
         {
             rb.useGravity = true;
         }
-
-        //if (agent != null)
-        //{
-        //    Debug.Log($"[DEBUG] {gameObject.name} - isActiveAndEnabled: {agent.isActiveAndEnabled}, isOnNavMesh: {agent.isOnNavMesh}");
-        //}
-
-        //// **Quan trọng:** Đảm bảo Agent tiếp tục đuổi theo Player
-        //if (agent.isActiveAndEnabled && agent.isOnNavMesh)
-        //{
-        //    Transform player = GameObject.FindGameObjectWithTag("Player")?.transform;
-        //    if (player != null)
-        //    {
-        //        agent.SetDestination(player.position); // Cập nhật điểm đến ngay khi leo xong
-        //        Debug.Log("Enemy tiếp tục đuổi theo Player sau khi leo lên.");
-        //    }
-        //    else Debug.LogWarning("Không tìm thấy Player");
-        //}
     }
 
     IEnumerator Parabola(NavMeshAgent agent, float height, float duration)

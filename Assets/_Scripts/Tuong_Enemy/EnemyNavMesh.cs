@@ -5,16 +5,12 @@ public class EnemyNavMesh : MonoBehaviour
 {
     public Transform player;
     private NavMeshAgent agent;
+    private EnemyAnimationController_Tuong enemyAnim;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
-        if (agent == null)
-        {
-            Debug.LogError("[ERROR] Không tìm thấy NavMeshAgent trên " + gameObject.name);
-            return;
-        }
+        enemyAnim = GetComponent<EnemyAnimationController_Tuong>();
 
         // Kiểm tra nếu Agent chưa được đặt trên NavMesh, thì tìm vị trí hợp lệ gần nhất
         if (!agent.isOnNavMesh)
@@ -30,6 +26,15 @@ public class EnemyNavMesh : MonoBehaviour
         if (player != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
         {
             agent.SetDestination(player.position);
+        }
+
+        if (agent.velocity.magnitude > 0.1f)
+        {
+            enemyAnim.ChangeAnimationState(EnemyAnimationState.Move);
+        }
+        else
+        {
+            enemyAnim.ChangeAnimationState(EnemyAnimationState.Idle);
         }
     }
 

@@ -88,5 +88,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Player đã chết!");
         // Thêm hiệu ứng chết
+
+        Destroy(gameObject);
     }
 }

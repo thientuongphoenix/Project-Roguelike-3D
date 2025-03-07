@@ -12,10 +12,14 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
     private NavMeshAgent agent;
     private Transform player;
 
+    private EnemyAnimationController_Tuong enemyAnim;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        enemyAnim = GetComponent<EnemyAnimationController_Tuong>();
     }
 
     void Update()
@@ -44,9 +48,11 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
             PlayerHealth playerHealth = playerCollider.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
+                enemyAnim.ChangeAnimationState(EnemyAnimationState.Attack);
                 playerHealth.TakeDamage(enemyStats.damage);
                 //Debug.Log("Gây " + enemyStats.damage + " sát thương lên Player");
             }
+            else enemyAnim.ChangeAnimationState(EnemyAnimationState.Idle);
         }
 
         yield return new WaitForSeconds(enemyStats.attackCooldown);
