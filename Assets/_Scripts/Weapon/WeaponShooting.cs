@@ -57,6 +57,6 @@ public class WeaponShooting : MonoBehaviour
             Debug.LogError("Bullet Prefab không có Rigidbody!");
         }
 
-        Debug.Log("Bắn vào: " + target.name);
+        //Debug.Log("Bắn vào: " + target.name);
     }
 }

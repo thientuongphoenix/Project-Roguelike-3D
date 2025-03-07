@@ -10,6 +10,12 @@ public class EnemyNavMesh : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
+        if (agent == null)
+        {
+            Debug.LogError("[ERROR] Không tìm thấy NavMeshAgent trên " + gameObject.name);
+            return;
+        }
+
         // Kiểm tra nếu Agent chưa được đặt trên NavMesh, thì tìm vị trí hợp lệ gần nhất
         if (!agent.isOnNavMesh)
         {

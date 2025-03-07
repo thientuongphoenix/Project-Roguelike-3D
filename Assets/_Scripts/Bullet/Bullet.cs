@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Đạn chạm kẻ địch: " + other.name);
+            //Debug.Log("Đạn chạm kẻ địch: " + other.name);
 
             // Kiểm tra Enemy có script EnemyHealth không
             EnemyHealth_Tuong enemyHealth = other.GetComponent<EnemyHealth_Tuong>();
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
             {
                 int damage = weaponStats.damage;
                 enemyHealth.TakeDamage(damage);
-                Debug.Log("Gây sát thương: " + damage);
+                //Debug.Log("Gây sát thương: " + damage);
             }
 
             Destroy(gameObject); // Hủy đạn sau khi bắn trúng

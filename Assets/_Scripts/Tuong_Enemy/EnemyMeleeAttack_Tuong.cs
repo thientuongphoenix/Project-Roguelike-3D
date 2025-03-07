@@ -1,12 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyMeleeAttack_Tuong : MonoBehaviour
 {
-    public EnemyStats_Tuong enemyStats; // G�n ScriptableObject ch?a th�ng tin Enemy
-    public Transform attackPoint; // ?i?m trung t�m v�ng t?n c�ng
-    public LayerMask playerLayer; // Layer c?a Player
+    public EnemyStats_Tuong enemyStats; // Gán ScriptableObject chứa thông tin Enemy
+    public Transform attackPoint; // Điểm trung tâm vùng tấn công
+    public LayerMask playerLayer; // Layer của Player
 
     private bool canAttack = true;
     private NavMeshAgent agent;
@@ -35,9 +35,9 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
     IEnumerator AttackPlayer()
     {
         canAttack = false;
-        Debug.Log(gameObject.name + " t?n c�ng Player!");
+        //Debug.Log(gameObject.name + " tấn công Player!");
 
-        // Ki?m tra xem Player c� trong t?m ?�nh kh�ng
+        // Kiểm tra xem Player có trong tầm đánh không
         Collider[] hitPlayers = Physics.OverlapSphere(attackPoint.position, enemyStats.attackRange, playerLayer);
         foreach (Collider playerCollider in hitPlayers)
         {
@@ -45,7 +45,7 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(enemyStats.damage);
-                Debug.Log("G�y " + enemyStats.damage + " s�t th??ng l�n Player");
+                //Debug.Log("Gây " + enemyStats.damage + " sát thương lên Player");
             }
         }
 
