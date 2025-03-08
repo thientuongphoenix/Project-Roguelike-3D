@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f083b911ac842448830193ad570861, type: 3}
   m_Name: PlayerStatsDefault
   m_EditorClassIdentifier: 
-  Level: 1
-  TotalExp: 63
-  Speed: 5
-  Health: 100
+  Level: 5
+  TotalExp: 143
+  Speed: 4
+  Health: 0
   MaxHealth: 100
   Armor: 0
-  Shield: 30
+  Shield: 0
   MaxShield: 30
   Dodge: 0

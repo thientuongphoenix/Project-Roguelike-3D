@@ -24,7 +24,7 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
 
     void Update()
     {
-        // 🛑 Kiểm tra nếu Enemy đã chết, không gọi SetDestination
+        // Kiểm tra nếu Enemy đã chết, không gọi SetDestination
         if (enemyStats.health <= 0 || agent == null || !agent.isActiveAndEnabled || !agent.isOnNavMesh)
         {
             return;
@@ -49,11 +49,17 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
     IEnumerator AttackPlayer()
     {
         canAttack = false;
-        agent.isStopped = true; // 🛑 Dừng di chuyển để đảm bảo animation Attack không bị cắt
+
+        // Kiểm tra nếu agent hợp lệ trước khi dừng
+        if (agent != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
+        {
+            agent.isStopped = true; // Dừng di chuyển để đánh
+        }
+
         enemyAnim.ChangeAnimationState(EnemyAnimationState.Attack);
 
         // Chờ animation Attack hoàn tất trước khi gây sát thương
-        float attackAnimationLength = 1.0f; // ⏳ Thời gian animation
+        float attackAnimationLength = 1.0f; // Thời gian animation
         yield return new WaitForSeconds(attackAnimationLength * 0.5f); // 💭 Đợi nửa thời gian trước khi gây sát thương
 
         // Kiểm tra xem Player có trong tầm đánh không
@@ -64,14 +70,19 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(enemyStats.damage);
-                Debug.Log("Gây " + enemyStats.damage + " sát thương lên Player");
+                //Debug.Log("Gây " + enemyStats.damage + " sát thương lên Player");
             }
         }
 
         // Đợi animation hoàn thành trước khi chuyển sang trạng thái khác
         yield return new WaitForSeconds(attackAnimationLength * 0.5f);
 
-        agent.isStopped = false; // ✅ Bật lại di chuyển
+        // Kiểm tra nếu agent hợp lệ trước khi tiếp tục di chuyển
+        if (agent != null && agent.isActiveAndEnabled && agent.isOnNavMesh)
+        {
+            agent.isStopped = false;
+        }
+
         canAttack = true;
     }
 
