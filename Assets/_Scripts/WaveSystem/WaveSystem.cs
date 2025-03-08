@@ -41,6 +41,8 @@ public class WaveSystem : MonoBehaviour
     {
         waveNumber++;
         timeRemaining = 60f; // Reset thời gian về 60 giây
+
+        FindFirstObjectByType<UpgradeManager>().ShowUpgradeOptions(); // Gọi hệ thống nâng cấp
     }
 
     void UpdateUI()
