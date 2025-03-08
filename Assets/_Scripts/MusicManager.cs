@@ -8,8 +8,6 @@ public class MusicManager : MonoBehaviour
     public Button musicToggleButton; // Reference to the button
     private Text buttonText; // Reference to the button text
     private Image buttonImage; // Reference to the button's Image component
-    public Sprite musicOnIcon; // Icon for music on
-    public Sprite musicOffIcon; // Icon for music off
 
     // Define colors for the button states
     public Color defaultColor = Color.white; // Default color when music is on
