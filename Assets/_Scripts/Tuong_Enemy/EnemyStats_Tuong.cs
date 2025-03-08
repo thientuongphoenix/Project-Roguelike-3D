@@ -12,7 +12,7 @@ public class EnemyStats_Tuong : ScriptableObject
     public int maxHealth;   // Máu tối đa
 
     [Header("Combat Stats")]
-    public int attackRange; // Tầm đánh
+    public float attackRange; // Tầm đánh
     public int damage;      // Sát thương
     public float attackCooldown; // Delay đòn đánh
 }

@@ -11,10 +11,13 @@ public class EnemyHealth_Tuong : MonoBehaviour
 
     public GameObject dropItemPrefab; // Prefab vật phẩm rớt ra khi chết
 
+    private bool isDead = false;
+
     void Start()
     {
         enemyStats.health = enemyStats.maxHealth;
         enemyAnim = GetComponent<EnemyAnimationController_Tuong>();
+        isDead = false;
     }
 
     public void TakeDamage(int damage)
@@ -31,9 +34,10 @@ public class EnemyHealth_Tuong : MonoBehaviour
 
     IEnumerator Die()
     {
+        isDead = true;
         enemyAnim.ChangeAnimationState(EnemyAnimationState.Die); // Phát animation chết
 
-        // 🛑 Dừng NavMeshAgent hoặc các hành động khác (nếu có)
+        // Dừng NavMeshAgent hoặc các hành động khác (nếu có)
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         if (agent != null)
         {
@@ -41,18 +45,21 @@ public class EnemyHealth_Tuong : MonoBehaviour
             agent.enabled = false;
         }
 
-        // 🎯 Chờ cho animation chết hoàn thành
-        float deathAnimationLength = 1f; // ⏳ Điều chỉnh thời gian theo animation thực tế
+        // Chờ cho animation chết hoàn thành
+        float deathAnimationLength = 1f; // Điều chỉnh thời gian theo animation thực tế
         yield return new WaitForSeconds(deathAnimationLength);
 
-        // 💰 Rớt vật phẩm sau khi chết
-        if (dropItemPrefab != null)
+        // Rớt vật phẩm sau khi chết
+        if (dropItemPrefab != null && isDead)
         {
             Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
         }
 
-        // ⏳ Chờ thêm 2 giây rồi xoá Enemy
-        yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
+        // Chờ thêm 2 giây rồi xoá Enemy
+        yield return new WaitForSeconds(0f);
+
+        // Trả Enemy về Pool thay vì Destroy
+        EnemyPool_Tuong.Instance.ReturnEnemy(gameObject);
+        //Destroy(gameObject);
     }
 }
