@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -83,6 +83,7 @@ public class RuleTile3D : MonoBehaviour
             {
                 placeholder.SetActive(false);
                 GameObject shownTile = Instantiate(ruleTile.rules[i].tile, transform);
+                //shownTile.layer = gameObject.layer;  // Giữ lại Layer ban đầu, để không bị reset
                 shownTile.transform.rotation = Quaternion.Euler(0, ruleTile.rules[i].rotation, 0);
                 if (ruleTile.material != null) shownTile.GetComponentInChildren<Renderer>().material = ruleTile.material;
                 ApplyTileOffset(ruleTile.rules[i].position_offset);
@@ -159,6 +160,7 @@ public class RuleTile3D : MonoBehaviour
     {
         if (!IsHidden) return;
         DestroyImmediate(gameObject);
+        //gameObject.layer = previousLayer;  // Giữ nguyên Layer sau khi xoá và khởi tạo lại
     }
 
     void ApplyTileOffset(Vector3 position_offset)
