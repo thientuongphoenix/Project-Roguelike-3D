@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc605feec4586046afce27060d75eb8, type: 3}
   m_Name: TEST
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: a15715c13393238468ec2421af3d11c6, type: 2}
+  material: {fileID: 2100000, guid: a15a2454262565d40ac77f11dc5940a6, type: 2}
   rules:
   - TR: 1
     T: 1
