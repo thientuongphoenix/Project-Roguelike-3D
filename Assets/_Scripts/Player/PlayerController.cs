@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>(); // Tìm Animator trong Object con
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (_checkForClimbable._canClimb && !_isClimbing)
         {
