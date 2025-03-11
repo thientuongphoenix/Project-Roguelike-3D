@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 178818703885972066}
   - component: {fileID: 834953738449289270}
   - component: {fileID: 59012549486761795}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Mobile Joystick Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 3379927803727438368}
   - component: {fileID: 7147135856466951727}
   - component: {fileID: 3426754563790078509}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Joystick Knob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 1250941637792113525}
   - component: {fileID: 704298238521078306}
   - component: {fileID: 4805801341823775347}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CanvasForJoystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3544138633668742886}
   - component: {fileID: 8111578229385349012}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Mobile Joystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 6767404631063017574}
   - component: {fileID: 7308635706481883076}
   - component: {fileID: 5566895781963013374}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Joystick Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}

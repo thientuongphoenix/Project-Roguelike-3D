@@ -60,7 +60,7 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
 
         // Chờ animation Attack hoàn tất trước khi gây sát thương
         float attackAnimationLength = 1.0f; // Thời gian animation
-        yield return new WaitForSeconds(attackAnimationLength * 0.5f); // 💭 Đợi nửa thời gian trước khi gây sát thương
+        yield return new WaitForSeconds(attackAnimationLength * 0.1f); // 💭 Đợi nửa thời gian trước khi gây sát thương
 
         // Kiểm tra xem Player có trong tầm đánh không
         Collider[] hitPlayers = Physics.OverlapSphere(attackPoint.position, enemyStats.attackRange, playerLayer);
@@ -72,6 +72,7 @@ public class EnemyMeleeAttack_Tuong : MonoBehaviour
                 playerHealth.TakeDamage(enemyStats.damage);
                 //Debug.Log("Gây " + enemyStats.damage + " sát thương lên Player");
             }
+            else enemyAnim.ChangeAnimationState(EnemyAnimationState.Idle);
         }
 
         // Đợi animation hoàn thành trước khi chuyển sang trạng thái khác
