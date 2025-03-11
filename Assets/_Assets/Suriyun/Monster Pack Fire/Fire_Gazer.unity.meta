@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TextMesh Pro.meta
+guid: 9bfafe02b2ba6be468067e303605f7ad
+folderAsset: yes
+========
 guid: 29012e726f0b1fa47aaabc1d5ea709dd
+>>>>>>>> DEV:Assets/_Assets/Suriyun/Monster Pack Fire/Fire_Gazer.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

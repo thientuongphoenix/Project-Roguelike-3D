@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Scenes/MenuScene.unity.meta
+guid: e82ed512bf6df0a4cb9a99a0c0edff3d
+========
 guid: fc69eb9c92f99f544ad60f73cea787a0
+>>>>>>>> DEV:Assets/_Assets/Suriyun/Monster Pack Fire/Cute Phoenix.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
