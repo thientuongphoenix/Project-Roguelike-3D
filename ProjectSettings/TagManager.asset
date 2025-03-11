@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - Block
   - SpawnPoint
+  - Tile Mesh
+  - Rule Tile
+  - Grid
+  - Combined Mesh
   layers:
   - Default
   - TransparentFX

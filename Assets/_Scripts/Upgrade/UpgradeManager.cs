@@ -52,7 +52,7 @@ public class UpgradeManager : MonoBehaviour
         for (int i = 0; i < 3; i++) // 3 lựa chọn ngẫu nhiên
         {
             StatType randomStat = (StatType)Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length);
-            int randomValue = Random.Range(5, 10); // Giá trị ngẫu nhiên
+            int randomValue = Random.Range(1, 4); // Giá trị ngẫu nhiên
 
             upgradeOptions.Add(new UpgradeOption(randomStat, randomValue));
         }
