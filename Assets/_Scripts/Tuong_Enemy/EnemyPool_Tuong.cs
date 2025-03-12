@@ -49,7 +49,7 @@ public class EnemyPool_Tuong : MonoBehaviour
             }
 
             // Reset lại máu khi spawn
-            EnemyHealth_Tuong enemyHealth = enemy.GetComponent<EnemyHealth_Tuong>();
+            EnemyHealth_NonNavmesh enemyHealth = enemy.GetComponent<EnemyHealth_NonNavmesh>();
             if (enemyHealth != null)
             {
                 enemyHealth.enemyStats.health = enemyHealth.enemyStats.maxHealth;
