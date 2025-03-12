@@ -31,7 +31,7 @@ public class WeaponShooting : MonoBehaviour
     void Fire(Transform target)
     {
         // Kiểm tra Enemy có còn sống không trước khi bắn
-        EnemyHealth_Tuong enemyHealth = target.GetComponent<EnemyHealth_Tuong>();
+        EnemyHealth_NonNavmesh enemyHealth = target.GetComponent<EnemyHealth_NonNavmesh>();
         if (enemyHealth == null || enemyHealth.enemyStats.health <= 0)
         {
             Debug.Log("Không bắn vì Enemy đã chết!");

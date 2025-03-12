@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
             //Debug.Log("Đạn chạm kẻ địch: " + other.name);
 
             // Kiểm tra Enemy có script EnemyHealth không
-            EnemyHealth_Tuong enemyHealth = other.GetComponent<EnemyHealth_Tuong>();
+            EnemyHealth_NonNavmesh enemyHealth = other.GetComponent<EnemyHealth_NonNavmesh>();
             if (enemyHealth != null)
             {
                 int damage = weaponStats.damage;

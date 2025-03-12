@@ -15,4 +15,7 @@ public class EnemyStats_Tuong : ScriptableObject
     public float attackRange; // Tầm đánh
     public int damage;      // Sát thương
     public float attackCooldown; // Delay đòn đánh
+
+    [Header("Reward")]
+    public int expReward; // EXP thưởng khi chết
 }

@@ -39,7 +39,7 @@ public class WeaponDetection : MonoBehaviour
         foreach (Transform enemy in detectedEnemies)
         {
             // Kiểm tra Enemy có `EnemyHealth_Tuong` không
-            EnemyHealth_Tuong enemyHealth = enemy.GetComponent<EnemyHealth_Tuong>();
+            EnemyHealth_NonNavmesh enemyHealth = enemy.GetComponent<EnemyHealth_NonNavmesh>();
             if (enemyHealth != null && enemyHealth.enemyStats.health > 0) // Chỉ chọn Enemy còn sống
             {
                 float distance = Vector3.Distance(position, enemy.position);
@@ -66,7 +66,7 @@ public class WeaponDetection : MonoBehaviour
                 continue;
             }
 
-            EnemyHealth_Tuong enemyHealth = enemy.GetComponent<EnemyHealth_Tuong>();
+            EnemyHealth_NonNavmesh enemyHealth = enemy.GetComponent<EnemyHealth_NonNavmesh>();
             if (enemyHealth != null && enemyHealth.enemyStats.health <= 0)
             {
                 detectedEnemies.RemoveAt(i);

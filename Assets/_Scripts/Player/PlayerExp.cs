@@ -24,13 +24,15 @@ public class PlayerExp : MonoBehaviour
 
     void AddExp()
     {
-        int expGain = Random.Range(5, 15); // Thêm EXP ngẫu nhiên để test
-        playerStats.TotalExp += expGain;
+        //int expGain = Random.Range(5, 15); // Thêm EXP ngẫu nhiên để test
+        //playerStats.TotalExp += expGain;
+        //Enemy chết thì cộng exp
+
         CheckLevelUp();
         UpdateUI();
     }
 
-    void CheckLevelUp()
+    public void CheckLevelUp()
     {
         while (playerStats.TotalExp >= expToNextLevel)
         {
@@ -40,7 +42,7 @@ public class PlayerExp : MonoBehaviour
         }
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         levelText.text = "LVL " + playerStats.Level;
         expSlider.maxValue = expToNextLevel;

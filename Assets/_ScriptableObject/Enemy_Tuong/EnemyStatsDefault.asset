@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRanged: 0
   isMelee: 1
-  health: 20
+  health: 0
   maxHealth: 20
-  attackRange: 1.5
+  attackRange: 1.6
   damage: 10
   attackCooldown: 1.5
+  expReward: 10
