@@ -66,11 +66,11 @@ public class WeaponDetection : MonoBehaviour
                 continue;
             }
 
-            EnemyHealth_NonNavmesh enemyHealth = enemy.GetComponent<EnemyHealth_NonNavmesh>();
-            if (enemyHealth != null && enemyHealth.enemyStats.health <= 0)
-            {
-                detectedEnemies.RemoveAt(i);
-            }
+            //EnemyHealth_NonNavmesh enemyHealth = enemy.GetComponent<EnemyHealth_NonNavmesh>();
+            //if (enemyHealth != null && enemyHealth.enemyStats.health <= 0)
+            //{
+            //    detectedEnemies.RemoveAt(i);
+            //}
         }
     }
 

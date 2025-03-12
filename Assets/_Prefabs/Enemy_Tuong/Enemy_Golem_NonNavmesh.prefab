@@ -147,6 +147,7 @@ MonoBehaviour:
   climbSpeed: 2
   stepUpHeight: 0.5
   stepForwardDistance: 0.5
+  enemyHealth: {fileID: 3990814328928460557}
 --- !u!114 &3881019539230289144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,10 +176,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ba55f8aeda75744a8690becea3f53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStats: {fileID: 11400000, guid: ad604eb2d8891dd4592f8ae879a99757, type: 2}
+  baseStats: {fileID: 11400000, guid: ad604eb2d8891dd4592f8ae879a99757, type: 2}
+  enemyStats: {fileID: 0}
   playerStats: {fileID: 11400000, guid: f438aba9261f4a04d81fccee8d6cdb8a, type: 2}
   playerExp: {fileID: 0}
   dropItemPrefab: {fileID: 996205047687515581, guid: cca1697b04a5ad24092dc5656a690d22, type: 3}
+  enemyMovement: {fileID: 7504051452972512971}
 --- !u!1 &3388337783568508934
 GameObject:
   m_ObjectHideFlags: 0

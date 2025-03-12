@@ -15,6 +15,8 @@ public class EnemyMovement : MonoBehaviour
     public float stepUpHeight = 1f; // 🔥 Sau khi leo xong, nâng lên thêm 1f
     public float stepForwardDistance = 1f; // 🔥 Bước tới trước sau khi leo
 
+    public EnemyHealth_NonNavmesh enemyHealth;
+
     private Rigidbody rb;
     private bool isClimbing = false;
 

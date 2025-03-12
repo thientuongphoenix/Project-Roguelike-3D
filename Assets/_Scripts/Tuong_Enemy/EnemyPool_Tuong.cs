@@ -40,20 +40,20 @@ public class EnemyPool_Tuong : MonoBehaviour
             enemy.SetActive(true);
 
             // Reset NavMeshAgent để đảm bảo Enemy hoạt động đúng
-            NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
-            if (agent != null)
-            {
-                agent.enabled = true;
-                agent.isStopped = false;
-                agent.Warp(position); // Đưa Enemy vào đúng NavMesh
-            }
+            //NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
+            //if (agent != null)
+            //{
+            //    agent.enabled = true;
+            //    agent.isStopped = false;
+            //    agent.Warp(position); // Đưa Enemy vào đúng NavMesh
+            //}
 
             // Reset lại máu khi spawn
-            EnemyHealth_NonNavmesh enemyHealth = enemy.GetComponent<EnemyHealth_NonNavmesh>();
-            if (enemyHealth != null)
-            {
-                enemyHealth.enemyStats.health = enemyHealth.enemyStats.maxHealth;
-            }
+            //EnemyHealth_NonNavmesh enemyHealth = enemy.GetComponent<EnemyHealth_NonNavmesh>();
+            //if (enemyHealth != null)
+            //{
+            //    enemyHealth.enemyStats.health = enemyHealth.enemyStats.maxHealth;
+            //}
 
             return enemy;
         }

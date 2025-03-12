@@ -48,7 +48,7 @@ public class EnemyMeleeAttack_NonNavmesh : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(enemyStats.damage);
-                Debug.Log(gameObject.name + " gây " + enemyStats.damage + " sát thương lên Player!");
+                //Debug.Log(gameObject.name + " gây " + enemyStats.damage + " sát thương lên Player!");
             }
         }
 
