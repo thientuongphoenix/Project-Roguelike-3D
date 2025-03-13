@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 6690143061531686977}
   - component: {fileID: 887053768915704187}
   - component: {fileID: 8417541058610626248}
+  - component: {fileID: 8271514601364640423}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -278,6 +279,20 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: f438aba9261f4a04d81fccee8d6cdb8a, type: 2}
   healthSlider: {fileID: 5963577213553694081}
   shieldSlider: {fileID: 6450846028621586057}
+--- !u!114 &8271514601364640423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654455387119150344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d91db49d853a664880e266358e86cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 2100000, guid: 1762f4523ecb90746a924368f08b2a88, type: 2}
+  seeThroughMaterial: {fileID: 2100000, guid: d30dd867d2cd9194f86a5e1a284e5be4, type: 2}
 --- !u!1 &1676413824541589984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,7 +1100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.022}
+  m_AnchoredPosition: {x: 0, y: -0.011}
   m_SizeDelta: {x: 0.8, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5963577213553694081
@@ -1206,7 +1221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.132}
+  m_AnchoredPosition: {x: 0, y: 0.197}
   m_SizeDelta: {x: 0.8, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6450846028621586057
