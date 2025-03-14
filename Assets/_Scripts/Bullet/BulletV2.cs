@@ -46,7 +46,7 @@ public class BulletV2 : MonoBehaviour
     /// </summary>
     void ApplyDamage(Collider enemy)
     {
-        EnemyHealth_NonNavmesh enemyHealth = enemy.GetComponent<EnemyHealth_NonNavmesh>();
+        EnemyHealth_NonNavmeshV2 enemyHealth = enemy.GetComponent<EnemyHealth_NonNavmeshV2>();
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(damage);

@@ -15,15 +15,16 @@ public class EnemyMovement : MonoBehaviour
     public float stepUpHeight = 1f; // 🔥 Sau khi leo xong, nâng lên thêm 1f
     public float stepForwardDistance = 1f; // 🔥 Bước tới trước sau khi leo
 
-    public EnemyHealth_NonNavmesh enemyHealth;
-
     private Rigidbody rb;
     private bool isClimbing = false;
+
+    private EnemyHealth_NonNavmeshV2 enemyHealth;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player")?.transform; // Tìm Player
+        enemyHealth = GetComponent<EnemyHealth_NonNavmeshV2>();
     }
 
     void Update()
@@ -45,6 +46,7 @@ public class EnemyMovement : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
+        if (enemyHealth.IsDead) return;
         Vector3 direction = (player.position - transform.position).normalized; // Hướng về Player
         rb.linearVelocity = new Vector3(direction.x * moveSpeed, rb.linearVelocity.y, direction.z * moveSpeed); // Giữ lại trục Y
     }

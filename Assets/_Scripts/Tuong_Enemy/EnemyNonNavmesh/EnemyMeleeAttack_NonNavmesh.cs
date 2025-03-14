@@ -10,10 +10,13 @@ public class EnemyMeleeAttack_NonNavmesh : MonoBehaviour
     private EnemyAnimationController_Tuong enemyAnim;
     private float attackTimer = 0f; // 🔥 Bộ đếm thời gian cooldown
 
+    private EnemyHealth_NonNavmeshV2 enemyHealth;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         enemyAnim = GetComponent<EnemyAnimationController_Tuong>();
+        enemyHealth = GetComponent<EnemyHealth_NonNavmeshV2>();
     }
 
     void Update()
@@ -30,6 +33,10 @@ public class EnemyMeleeAttack_NonNavmesh : MonoBehaviour
         else if (distanceToPlayer > enemyStats.attackRange) // Nếu Player ngoài phạm vi, chuyển sang trạng thái Move
         {
             enemyAnim.ChangeAnimationState(EnemyAnimationState.Move);
+        }
+        else if (enemyHealth.IsDead)
+        {
+            enemyAnim.ChangeAnimationState(EnemyAnimationState.Die);
         }
 
         // 🔥 Giảm bộ đếm thời gian nếu còn cooldown
