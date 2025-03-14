@@ -45,6 +45,10 @@ public class EnemyMeleeAttack_NonNavmesh : MonoBehaviour
 
     void AttackPlayer()
     {
+        if (enemyHealth.IsDead)
+        {
+            return;
+        }
         enemyAnim.ChangeAnimationState(EnemyAnimationState.Attack);
 
         // 🔥 Kiểm tra nếu Player vẫn trong phạm vi khi đòn đánh xảy ra
