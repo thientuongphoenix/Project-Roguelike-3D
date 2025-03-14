@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 1958334265835159085}
   - component: {fileID: 8246719722980193066}
   - component: {fileID: 5951878241513191633}
+  - component: {fileID: 5501131830292970526}
+  - component: {fileID: 7663417544799594525}
   m_Layer: 0
   m_Name: DefaultWeapon_SuaLan2
   m_TagString: Untagged
@@ -135,3 +137,30 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &5501131830292970526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519159347808727896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5750750ca99b43b4d94e946d893d5edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 10
+--- !u!114 &7663417544799594525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519159347808727896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a6e65038dd6e644a94faa2e7d8748c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 4270688288148634711}
+  weaponStats: {fileID: 11400000, guid: 49b6e512b76643845a5c8496ab1e3eeb, type: 2}

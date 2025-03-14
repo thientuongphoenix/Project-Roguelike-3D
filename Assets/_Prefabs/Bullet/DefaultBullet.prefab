@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6549256659186963359}
-  - component: {fileID: 4273760568987771800}
   - component: {fileID: 5681876151048695781}
   - component: {fileID: 7545095396796192247}
+  - component: {fileID: 2794961320482403590}
   m_Layer: 0
   m_Name: DefaultBullet
   m_TagString: Untagged
@@ -35,20 +35,6 @@ Transform:
   - {fileID: 2498447520434279593}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4273760568987771800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1921076108878798791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fc66639a22871541a1b6db23ce12128, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 3
-  weaponStats: {fileID: 11400000, guid: 49b6e512b76643845a5c8496ab1e3eeb, type: 2}
 --- !u!54 &5681876151048695781
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99,6 +85,18 @@ CapsuleCollider:
   m_Height: 0.09751652
   m_Direction: 1
   m_Center: {x: -0.0010923147, y: -0.00060706586, z: 0}
+--- !u!114 &2794961320482403590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921076108878798791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d301e15823fbf548a009407855db2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4255034663176355898
 GameObject:
   m_ObjectHideFlags: 0
