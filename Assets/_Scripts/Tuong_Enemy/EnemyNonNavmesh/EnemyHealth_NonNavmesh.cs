@@ -36,7 +36,7 @@ public class EnemyHealth_NonNavmesh : MonoBehaviour
         //enemyMovement.enabled = true; // 🔥 Bật lại di chuyển khi enemy hồi sinh
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         //Debug.Log(isDead);
         if (isDead) return; // 🔥 Tránh nhận damage sau khi đã chết

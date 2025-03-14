@@ -8,14 +8,14 @@ public class EnemyStats_Tuong : ScriptableObject
     public bool isMelee;  // Enemy đánh gần
 
     [Header("Health")]
-    public int health;      // Máu hiện tại
-    public int maxHealth;   // Máu tối đa
+    public float health;      // Máu hiện tại
+    public float maxHealth;   // Máu tối đa
 
     [Header("Combat Stats")]
     public float attackRange; // Tầm đánh
-    public int damage;      // Sát thương
+    public float damage;      // Sát thương
     public float attackCooldown; // Delay đòn đánh
 
     [Header("Reward")]
-    public int expReward; // EXP thưởng khi chết
+    public float expReward; // EXP thưởng khi chết
 }

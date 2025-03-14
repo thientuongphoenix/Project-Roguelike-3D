@@ -17,14 +17,14 @@ public class PlayerHealth : MonoBehaviour
         UpdateShieldUI();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        int remainingDamage = damage;
+        float remainingDamage = damage;
 
         // Nếu có Shield, trừ Shield trước
         if (playerStats.Shield > 0)
         {
-            int shieldAbsorb = Mathf.Min(playerStats.Shield, remainingDamage);
+            float shieldAbsorb = Mathf.Min(playerStats.Shield, remainingDamage);
             playerStats.Shield -= shieldAbsorb;
             remainingDamage -= shieldAbsorb;
 

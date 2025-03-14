@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
             EnemyHealth_NonNavmesh enemyHealth = other.GetComponent<EnemyHealth_NonNavmesh>();
             if (enemyHealth != null)
             {
-                int damage = weaponStats.damage;
+                float damage = weaponStats.damage;
                 enemyHealth.TakeDamage(damage);
                 //Debug.Log("Gây sát thương: " + damage);
             }
