@@ -17,6 +17,8 @@ public class EnemyHealth_NonNavmeshV2 : MonoBehaviour
     public GameObject dropItemPrefab; // Prefab vật phẩm rớt ra khi enemy chết
     private EnemyAnimationController_Tuong enemyAnim; // Bộ điều khiển animation
 
+    private WaveSpawner waveSpawner;
+
     public bool IsDead { get; private set; } // Trạng thái của enemy
 
     private void Awake()
@@ -24,6 +26,8 @@ public class EnemyHealth_NonNavmeshV2 : MonoBehaviour
         enemyAnim = GetComponent<EnemyAnimationController_Tuong>();
         currentHealth = maxHealth; // Đặt máu ban đầu
         IsDead = false;
+
+        waveSpawner = GetComponentInParent<WaveSpawner>();
     }
 
     /// <summary>
@@ -75,5 +79,8 @@ public class EnemyHealth_NonNavmeshV2 : MonoBehaviour
 
         // Hủy enemy khỏi scene
         Destroy(gameObject);
+
+        //Giảm số lượng enemy còn sống trong Wave Spawner
+        waveSpawner.waves[waveSpawner.currentWaveIndex].enemyLeft--;
     }
 }

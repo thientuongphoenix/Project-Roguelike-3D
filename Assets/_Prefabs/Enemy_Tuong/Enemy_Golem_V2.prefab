@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 3470752212339719327}
   - component: {fileID: 2349850050912365650}
   - component: {fileID: 4389679783616665991}
+  - component: {fileID: 1582154865718333544}
   m_Layer: 8
   m_Name: Enemy_Golem_V2
   m_TagString: Enemy
@@ -65,7 +66,7 @@ Transform:
   m_GameObject: {fileID: 466372867975124012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.75, y: 1.85, z: -3.09}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -214,6 +215,18 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: f438aba9261f4a04d81fccee8d6cdb8a, type: 2}
   playerExp: {fileID: 0}
   dropItemPrefab: {fileID: 996205047687515581, guid: cca1697b04a5ad24092dc5656a690d22, type: 3}
+--- !u!114 &1582154865718333544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466372867975124012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce624957e34e16244810bd584085bfc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2299875471159184041
 GameObject:
   m_ObjectHideFlags: 0
