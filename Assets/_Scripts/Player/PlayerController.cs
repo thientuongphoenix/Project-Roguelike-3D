@@ -10,7 +10,8 @@ public enum AnimationState
     Move,
     Climb,
     Jump,
-    Fly
+    Fly,
+    Die
 }
 
 public class PlayerController : MonoBehaviour
@@ -28,23 +29,32 @@ public class PlayerController : MonoBehaviour
     private bool _isClimbing;
     private AnimationState _currentState; // Chuyển State Animation bằng String
 
+    private PlayerHealth _playerHealth;
+
+    //private PlayerAnimationController playerAnimationController;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _playerJoystick = Object.FindFirstObjectByType<MobileJoystick>();
         _checkForClimbable = GetComponent<CheckForClimbable>();
         _animator = GetComponentInChildren<Animator>(); // Tìm Animator trong Object con
+        _playerHealth = GetComponent<PlayerHealth>();
     }
 
     void FixedUpdate()
     {
-        if (_checkForClimbable._canClimb && !_isClimbing)
-        {
-            StartCoroutine(ClimbUp());
-        }
+        if (_playerHealth.IsDead == true) return;
         else
         {
-            PlayerMove();
+            if (_checkForClimbable._canClimb && !_isClimbing)
+            {
+                StartCoroutine(ClimbUp());
+            }
+            else
+            {
+                PlayerMove();
+            }
         }
     }
 
@@ -67,10 +77,12 @@ public class PlayerController : MonoBehaviour
         if (move.magnitude > 0.1f) // Nếu có di chuyển
         {
             ChangeAnimationState(AnimationState.Move);
+            //playerAnimationController.ChangeAnimationState(PlayerAnimationState.Move);
         }
         else // Nếu dừng lại
         {
             ChangeAnimationState(AnimationState.Idle);
+            //playerAnimationController.ChangeAnimationState(PlayerAnimationState.Idle);
         }
     }
 
@@ -121,7 +133,7 @@ public class PlayerController : MonoBehaviour
         //ChangeAnimationState(AnimationState.Idle);
     }
 
-    void ChangeAnimationState(AnimationState newState)
+    public void ChangeAnimationState(AnimationState newState)
     {
         if (_currentState == newState) return;
 

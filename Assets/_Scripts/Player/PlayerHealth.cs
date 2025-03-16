@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -8,6 +9,11 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthSlider;
     public Slider shieldSlider;
 
+    private PlayerController playerController; // Tham chiếu đến PlayerController nhằm lôi cái ChangeAnimationState ra
+    private bool isDead = false;
+
+    public bool IsDead { get => isDead; private set => isDead = value; }
+
     void Start()
     {
         playerStats.Health = playerStats.MaxHealth;
@@ -15,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
 
         UpdateHealthUI();
         UpdateShieldUI();
+
+        isDead = false;
     }
 
     public void TakeDamage(float damage)
@@ -84,11 +92,25 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    private IEnumerator Die()
     {
+        isDead = true;
         Debug.Log("Player đã chết!");
-        // Thêm hiệu ứng chết
 
+        // Gọi animation chết từ PlayerController
+        playerController.ChangeAnimationState(AnimationState.Die);
+
+        // Chờ animation thực sự bắt đầu
+        Animator animator = GetComponentInChildren<Animator>();
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(AnimationState.Die.ToString()))
+        {
+            yield return null;
+        }
+
+        // Chờ animation chạy xong
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        // Hủy Player
         Destroy(gameObject);
     }
 }
