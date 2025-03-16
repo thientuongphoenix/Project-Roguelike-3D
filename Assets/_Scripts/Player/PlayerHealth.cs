@@ -10,12 +10,12 @@ public class PlayerHealth : MonoBehaviour
     public Slider shieldSlider;
 
     private PlayerController playerController; // Tham chiếu đến PlayerController nhằm lôi cái ChangeAnimationState ra
-    private bool isDead = false;
-
-    public bool IsDead { get => isDead; private set => isDead = value; }
+    public bool isDead {  get; private set; }
 
     void Start()
     {
+        playerController = GetComponent<PlayerController>();
+
         playerStats.Health = playerStats.MaxHealth;
         playerStats.Shield = playerStats.MaxShield;
 
@@ -23,6 +23,16 @@ public class PlayerHealth : MonoBehaviour
         UpdateShieldUI();
 
         isDead = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if(playerStats.Health <= 0)
+        {
+            playerStats.Health = 0;
+            isDead = true;
+            StartCoroutine(Die());
+        }
     }
 
     public void TakeDamage(float damage)
@@ -50,10 +60,11 @@ public class PlayerHealth : MonoBehaviour
 
             playerStats.Health -= remainingDamage;
 
+            //Hết máu thì cook
             if (playerStats.Health <= 0)
             {
                 playerStats.Health = 0;
-                Die();
+                //Die();
             }
         }
 
@@ -100,15 +111,8 @@ public class PlayerHealth : MonoBehaviour
         // Gọi animation chết từ PlayerController
         playerController.ChangeAnimationState(AnimationState.Die);
 
-        // Chờ animation thực sự bắt đầu
-        Animator animator = GetComponentInChildren<Animator>();
-        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(AnimationState.Die.ToString()))
-        {
-            yield return null;
-        }
-
         // Chờ animation chạy xong
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(1f);
 
         // Hủy Player
         Destroy(gameObject);

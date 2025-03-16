@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
 
     //private PlayerAnimationController playerAnimationController;
 
+    private bool isDead;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -40,21 +42,22 @@ public class PlayerController : MonoBehaviour
         _checkForClimbable = GetComponent<CheckForClimbable>();
         _animator = GetComponentInChildren<Animator>(); // Tìm Animator trong Object con
         _playerHealth = GetComponent<PlayerHealth>();
+
+        isDead = _playerHealth.isDead;
     }
 
     void FixedUpdate()
     {
-        if (_playerHealth.IsDead == true) return;
+        isDead = _playerHealth.isDead;
+        if (isDead) return;
+
+        if (_checkForClimbable._canClimb && !_isClimbing)
+        {
+            StartCoroutine(ClimbUp());
+        }
         else
         {
-            if (_checkForClimbable._canClimb && !_isClimbing)
-            {
-                StartCoroutine(ClimbUp());
-            }
-            else
-            {
-                PlayerMove();
-            }
+            PlayerMove();
         }
     }
 
