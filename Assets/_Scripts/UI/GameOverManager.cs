@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class GameOverManager : MonoBehaviour
@@ -8,6 +10,7 @@ public class GameOverManager : MonoBehaviour
 
     private PlayerHealth playerHealth;
     private bool isDead;
+    
 
     private void Start()
     {
@@ -32,6 +35,15 @@ public class GameOverManager : MonoBehaviour
     {
         Time.timeScale = 0; // Dừng thời gian game trước khi hiện panel game over
         gameOverPanel.SetActive(true); // Hiện Panel Game Over
+    }
+
+    /// <summary>
+    /// Load lại scene hiện tại từ đầu.
+    /// </summary>
+    public void PlayAgainButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1; // Bỏ dừng thời gian game
     }
 
     /// <summary>
