@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PistolWeaponStat
   m_EditorClassIdentifier: 
   weaponName: Pistol
-  weaponIcon: {fileID: 0}
+  weaponIcon: {fileID: 21300000, guid: 8dc36419e574925409ba2924edacaa84, type: 3}
   weaponPrefab: {fileID: 3613984097171208841, guid: 148471008fd9148498c9a94c4e21515f, type: 3}
   range: 5
   fireRate: 3

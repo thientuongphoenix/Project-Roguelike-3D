@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,15 +32,15 @@ public class ShopScrollSnap : MonoBehaviour
 
     void Update()
     {
-        if (!isDragging)
-        {
-            // Scroll đến vị trí gần nhất
-            content.anchoredPosition = Vector2.Lerp(
-                content.anchoredPosition,
-                new Vector2(-itemTransforms[selectedItemIndex].anchoredPosition.x, content.anchoredPosition.y),
-                Time.deltaTime * snapSpeed
-            );
-        }
+        //if (!isDragging)
+        //{
+        //    // Scroll đến vị trí gần nhất
+        //    content.anchoredPosition = Vector2.Lerp(
+        //        content.anchoredPosition,
+        //        new Vector2(-itemTransforms[selectedItemIndex].anchoredPosition.x, content.anchoredPosition.y),
+        //        Time.deltaTime * snapSpeed
+        //    );
+        //}
     }
 
     public void OnDragStart()
