@@ -25,4 +25,21 @@ public class PlayerPickup : MonoBehaviour
     {
         blockText.text = "" + blockCount;
     }
+
+    /// <summary>
+    /// Lấy số lượng block hiện có.
+    /// </summary>
+    public int GetBlockCount()
+    {
+        return blockCount;
+    }
+
+    /// <summary>
+    /// Trừ block khi mua vật phẩm và cập nhật UI.
+    /// </summary>
+    public void SpendBlock(int amount)
+    {
+        blockCount -= amount;
+        UpdateUI();
+    }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class WeaponItem : MonoBehaviour
@@ -7,6 +8,7 @@ public class WeaponItem : MonoBehaviour
     private ShopScrollSnap shopManager; // Tham chiếu đến hệ thống shop
     public Image icon; // Ảnh hiển thị trong shop
     private Image itemBackground; // Dùng để đổi màu khi chọn
+    public TextMeshProUGUI priceText; // Text hiển thị giá
 
     void Start()
     {
@@ -17,6 +19,11 @@ public class WeaponItem : MonoBehaviour
 
         itemBackground = GetComponent<Image>();
         GetComponent<Button>().onClick.AddListener(OnItemClick);
+
+        if (weaponStats != null && priceText != null)
+        {
+            priceText.text = weaponStats.weaponPrice + " Block"; // Hiển thị giá vũ khí
+        }
     }
 
     /// <summary>

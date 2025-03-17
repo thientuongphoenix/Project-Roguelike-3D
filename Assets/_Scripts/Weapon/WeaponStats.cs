@@ -20,4 +20,7 @@ public class WeaponStats : ScriptableObject
     [Header("Bullet Settings")]
     public GameObject bulletPrefab;
     public float bulletSpeed;
+
+    [Header("Weapon Price")]
+    public int weaponPrice;
 }

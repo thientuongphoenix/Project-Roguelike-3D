@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,10 @@ public class ShopScrollSnap : MonoBehaviour
     public float threshold = 0.1f; // Ngưỡng để dừng lại
     public Button buyButton; // Nút mua vũ khí
     public WeaponManager weaponManager; // Hệ thống vũ khí của player
+
+    public PlayerPickup playerPickup; // Tham chiếu đến hệ thống Block của player
+    public TextMeshProUGUI currentBlockText;// Hiển thị số block hiện có
+    public TextMeshProUGUI statusText; // Text hiển thị thông báo
 
     //private List<RectTransform> itemTransforms = new List<RectTransform>();
     //private int selectedItemIndex = 0;
@@ -36,41 +41,24 @@ public class ShopScrollSnap : MonoBehaviour
 
         // Gán sự kiện cho nút mua
         buyButton.onClick.AddListener(BuyWeapon);
+
+        statusText.gameObject.SetActive(false); // Ẩn thông báo ban đầu
+    }
+
+    private void OnEnable()
+    {
+        
     }
 
     void Update()
     {
-        //if (!isDragging)
-        //{
-        //    // Scroll đến vị trí gần nhất
-        //    content.anchoredPosition = Vector2.Lerp(
-        //        content.anchoredPosition,
-        //        new Vector2(-itemTransforms[selectedItemIndex].anchoredPosition.x, content.anchoredPosition.y),
-        //        Time.deltaTime * snapSpeed
-        //    );
-        //}
+        UpdateCurrentBlockText();
     }
 
     public void OnDragStart()
     {
         isDragging = true;
     }
-
-    //public void OnDragEnd()
-    //{
-    //    isDragging = false;
-    //    float closestDistance = float.MaxValue;
-
-    //    for (int i = 0; i < itemTransforms.Count; i++)
-    //    {
-    //        float distance = Mathf.Abs(content.anchoredPosition.x + itemTransforms[i].anchoredPosition.x);
-    //        if (distance < closestDistance)
-    //        {
-    //            closestDistance = distance;
-    //            selectedItemIndex = i;
-    //        }
-    //    }
-    //}
 
     /// <summary>
     /// Được gọi khi người chơi bấm vào một item.
@@ -93,10 +81,45 @@ public class ShopScrollSnap : MonoBehaviour
     /// </summary>
     public void BuyWeapon()
     {
-        if (weaponManager != null && selectedWeaponItem != null)
+        if (selectedWeaponItem == null || weaponManager == null || playerPickup == null)
+            return;
+
+        int weaponPrice = selectedWeaponItem.weaponStats.weaponPrice;
+
+        // Kiểm tra số lượng block trước khi mua
+        if (playerPickup.GetBlockCount() >= weaponPrice)
         {
+            // Trừ block và thêm vũ khí
+            playerPickup.SpendBlock(weaponPrice);
             weaponManager.AddWeapon(selectedWeaponItem.weaponStats);
             Debug.Log($"Mua vũ khí: {selectedWeaponItem.weaponStats.weaponName}");
+        }
+        else
+        {
+            // Hiển thị cảnh báo nếu không đủ block
+            StartCoroutine(ShowStatusMessage("Bạn không đủ block!", 1f));
+        }
+    }
+
+    /// <summary>
+    /// Hiển thị thông báo trong một khoảng thời gian.
+    /// </summary>
+    private IEnumerator ShowStatusMessage(string message, float duration)
+    {
+        statusText.text = message;
+        statusText.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(duration); // Sử dụng thời gian thực
+        statusText.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Cập nhật số lượng block hiện có trong shop.
+    /// </summary>
+    public void UpdateCurrentBlockText()
+    {
+        if (playerPickup != null && currentBlockText != null)
+        {
+            currentBlockText.text = $"Block: {playerPickup.GetBlockCount()}";
         }
     }
 }
