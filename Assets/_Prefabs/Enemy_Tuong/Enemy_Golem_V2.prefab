@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 0
-  expReward: 50
+  expReward: 20
   playerStats: {fileID: 11400000, guid: f438aba9261f4a04d81fccee8d6cdb8a, type: 2}
   playerExp: {fileID: 0}
   dropItemPrefab: {fileID: 996205047687515581, guid: cca1697b04a5ad24092dc5656a690d22, type: 3}
