@@ -1,23 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private float countdown;
     [SerializeField] private GameObject spawnPoint;
 
+    [SerializeField] private GameObject winPanel;
+
     public Wave[] waves;
 
     public int currentWaveIndex = 0;
 
     private bool readyToCountdown;
+    private bool isGameWon = false;
 
     private void Start()
     {
         readyToCountdown = true;
+        winPanel.SetActive(false); // Ẩn Panel Win ban đầu
 
-        for(int i = 0; i < waves.Length; i++)
+        for (int i = 0; i < waves.Length; i++)
         {
             waves[i].enemyLeft = waves[i].enemies.Length;
         }
@@ -25,9 +30,12 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
-        if(currentWaveIndex >= waves.Length)
+        if (isGameWon) return; // Nếu đã thắng, không chạy Update nữa
+
+        if (currentWaveIndex >= waves.Length)
         {
             Debug.Log("Hết Wave rồi, Thắng rồi!");
+            WinGame(); // Kích hoạt UI Win
             return;
         }
 
@@ -67,6 +75,34 @@ public class WaveSpawner : MonoBehaviour
             }
         }
         
+    }
+
+    /// <summary>
+    /// Kích hoạt UI Win khi hoàn thành tất cả Waves.
+    /// </summary>
+    private void WinGame()
+    {
+        isGameWon = true;
+        Time.timeScale = 0f; // Dừng game
+        winPanel.SetActive(true); // Hiện UI Win
+    }
+
+    /// <summary>
+    /// Load lại màn chơi hiện tại khi nhấn "Play Again".
+    /// </summary>
+    public void PlayAgain()
+    {
+        Time.timeScale = 1f; // Tiếp tục thời gian game
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Load lại Scene hiện tại
+    }
+
+    /// <summary>
+    /// Quay về Main Menu khi nhấn "Main Menu".
+    /// </summary>
+    public void MainMenu()
+    {
+        Time.timeScale = 1f; // Tiếp tục thời gian game
+        SceneManager.LoadScene("MenuScene");
     }
 }
 

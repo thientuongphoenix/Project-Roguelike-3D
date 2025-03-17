@@ -24,4 +24,4 @@ MonoBehaviour:
   fireCooldown: 1
   bulletPrefab: {fileID: 1921076108878798791, guid: f78dad5ce5660ba429f496990104082a, type: 3}
   bulletSpeed: 30
-  weaponPrice: 10
+  weaponPrice: 3

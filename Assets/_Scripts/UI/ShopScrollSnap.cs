@@ -10,8 +10,8 @@ public class ShopScrollSnap : MonoBehaviour
 {
     public ScrollRect scrollRect; // Scroll Rect của cửa hàng
     public RectTransform content; // Content chứa các vật phẩm
-    public float snapSpeed = 10f; // Tốc độ dừng
-    public float threshold = 0.1f; // Ngưỡng để dừng lại
+    //public float snapSpeed = 10f; // Tốc độ dừng
+    //public float threshold = 0.1f; // Ngưỡng để dừng lại
     public Button buyButton; // Nút mua vũ khí
     public WeaponManager weaponManager; // Hệ thống vũ khí của player
 
@@ -43,11 +43,6 @@ public class ShopScrollSnap : MonoBehaviour
         buyButton.onClick.AddListener(BuyWeapon);
 
         statusText.gameObject.SetActive(false); // Ẩn thông báo ban đầu
-    }
-
-    private void OnEnable()
-    {
-        
     }
 
     void Update()
@@ -97,7 +92,7 @@ public class ShopScrollSnap : MonoBehaviour
         else
         {
             // Hiển thị cảnh báo nếu không đủ block
-            StartCoroutine(ShowStatusMessage("Bạn không đủ block!", 1f));
+            StartCoroutine(ShowStatusMessage("You don't have enough blocks!", 1f));
         }
     }
 
