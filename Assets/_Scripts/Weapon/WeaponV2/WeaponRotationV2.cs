@@ -7,6 +7,7 @@ public class WeaponRotationV2 : MonoBehaviour
 {
     public float rotationSpeed = 10f;
     private WeaponDetectionV2 detectionSystem;
+    [SerializeField] private Vector3 rotationOffset = new Vector3(0, 0, 0); // Góc xoay tùy chỉnh trong Inspector
 
     void Start()
     {
@@ -32,7 +33,7 @@ public class WeaponRotationV2 : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction);
 
         // Nếu cần chỉnh thêm góc, có thể thay đổi Euler angles tại đây
-        lookRotation *= Quaternion.Euler(-90, 0, 0); // Điều chỉnh nếu cần
+        lookRotation *= Quaternion.Euler(rotationOffset); // Điều chỉnh nếu cần
 
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }

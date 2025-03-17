@@ -39,7 +39,7 @@ public class WeaponManager : MonoBehaviour
         }
 
         int nextIndex = _activeWeapons.Count;
-        Transform spawnTransform = _weaponSpawnPoints[nextIndex]; // Fix lỗi: Khai báo spawnTransform
+        Transform spawnTransform = _weaponSpawnPoints[nextIndex]; // Fix lỗi: Khai báo spawnTransform, dòng này dùng để biết vị trí tiếp theo gắn vũ khí
 
         // Tính vector hướng từ nhân vật đến điểm spawn
         Vector3 direction = (spawnTransform.position - transform.position).normalized;
@@ -49,6 +49,38 @@ public class WeaponManager : MonoBehaviour
 
         GameObject newWeapon = Instantiate(weaponStats.weaponPrefab, finalSpawnPosition, weaponStats.weaponPrefab.transform.rotation, transform);
         _activeWeapons.Add(newWeapon);
+    }
+
+    /// <summary>
+    /// Thêm vũ khí vào vị trí trống tiếp theo
+    /// </summary>
+    /// <param name="weaponStats">WeaponStats của vũ khí cần thêm</param>
+    public void AddWeapon(WeaponStats weaponStats)
+    {
+        if (_activeWeapons.Count >= _weaponSpawnPoints.Count)
+        {
+            Debug.Log("Không thể thêm vũ khí, đã đạt giới hạn tối đa!");
+            return;
+        }
+
+        int nextIndex = _activeWeapons.Count;
+        Transform spawnTransform = _weaponSpawnPoints[nextIndex]; // Vị trí spawn kế tiếp
+
+        // Dịch ra xa thêm một khoảng spawnOffset
+        Vector3 direction = (spawnTransform.position - transform.position).normalized;
+        Vector3 finalSpawnPosition = spawnTransform.position + direction * spawnOffset;
+
+        GameObject newWeapon = Instantiate(weaponStats.weaponPrefab, finalSpawnPosition, Quaternion.identity, transform);
+        _activeWeapons.Add(newWeapon);
+    }
+
+    /// <summary>
+    /// Hàm để gọi từ Button UI (nhận WeaponStats)
+    /// </summary>
+    /// <param name="weaponStats">Vũ khí cần thêm</param>
+    public void OnAddWeaponButtonClick(WeaponStats weaponStats)
+    {
+        AddWeapon(weaponStats);
     }
 
     // Xóa vũ khí khỏi danh sách

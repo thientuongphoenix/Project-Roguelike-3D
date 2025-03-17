@@ -21,6 +21,6 @@ MonoBehaviour:
   damage: 10
   CritChance: 0
   CritDamage: 0
-  fireCooldown: -11.0435295
+  fireCooldown: 1
   bulletPrefab: {fileID: 1921076108878798791, guid: f78dad5ce5660ba429f496990104082a, type: 3}
   bulletSpeed: 30
