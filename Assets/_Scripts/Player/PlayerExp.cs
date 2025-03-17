@@ -10,7 +10,7 @@ public class PlayerExp : MonoBehaviour
 
     private int expToNextLevel; // EXP cần để lên cấp tiếp theo
 
-    void Start()
+    void Awake()
     {
         playerStats.Level = 1;
         playerStats.TotalExp = 0;
@@ -19,7 +19,12 @@ public class PlayerExp : MonoBehaviour
         UpdateUI();
 
         // Test: Tự động cộng kinh nghiệm mỗi giây
-        InvokeRepeating("AddExp", 1f, 1f);
+        //InvokeRepeating("AddExp", 1f, 1f);
+    }
+
+    private void Update()
+    {
+        AddExp();
     }
 
     void AddExp()
