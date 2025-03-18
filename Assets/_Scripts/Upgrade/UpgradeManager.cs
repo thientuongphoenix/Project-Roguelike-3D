@@ -6,9 +6,9 @@ public enum StatType
 {
     MaxHealth,       // Tăng máu tối đa
     Health,         // Tăng máu
-    Speed,        // Tăng tốc độ di chuyển
+    //Speed,        // Tăng tốc độ di chuyển
     Armor,        // Tăng giáp
-    Shield,       // Tăng khiên
+    MaxShield,       // Tăng khiên
     Dodge         // Tăng né tránh
 }
 
@@ -52,7 +52,7 @@ public class UpgradeManager : MonoBehaviour
         for (int i = 0; i < 3; i++) // 3 lựa chọn ngẫu nhiên
         {
             StatType randomStat = (StatType)Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length);
-            int randomValue = Random.Range(1, 2); // Giá trị ngẫu nhiên
+            int randomValue = Random.Range(1, 10); // Giá trị ngẫu nhiên
 
             upgradeOptions.Add(new UpgradeOption(randomStat, randomValue));
         }
@@ -79,14 +79,14 @@ public class UpgradeManager : MonoBehaviour
             case StatType.Health:
                 playerStats.Health += chosenUpgrade.amount;
                 break;
-            case StatType.Speed:
-                playerStats.Speed += chosenUpgrade.amount;
-                break;
+            //case StatType.Speed:
+            //    playerStats.Speed += chosenUpgrade.amount;
+            //    break;
             case StatType.Armor:
                 playerStats.Armor += chosenUpgrade.amount;
                 break;
-            case StatType.Shield:
-                playerStats.Shield += chosenUpgrade.amount;
+            case StatType.MaxShield:
+                playerStats.MaxShield += chosenUpgrade.amount;
                 break;
             case StatType.Dodge:
                 playerStats.Dodge += chosenUpgrade.amount;

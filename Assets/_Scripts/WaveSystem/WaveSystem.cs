@@ -7,7 +7,7 @@ public class WaveSystem : MonoBehaviour
     public TextMeshProUGUI timerText; // Hiển thị đồng hồ đếm ngược
 
     private int waveNumber = 1; // Wave bắt đầu từ 1
-    private float timeRemaining = 60f; // Bắt đầu đếm từ 60 giây
+    private float timeRemaining = 30f; // Bắt đầu đếm từ 60 giây
     private bool isCounting = true; // Kiểm tra có đang đếm không
 
     void Start()

@@ -16,6 +16,9 @@ public class PlayerHealth : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
 
+        playerStats.MaxHealth = 100;
+        playerStats.MaxShield = 30;
+        playerStats.Armor = 0;
         playerStats.Health = playerStats.MaxHealth;
         playerStats.Shield = playerStats.MaxShield;
 

@@ -107,6 +107,7 @@ public class WaveSpawner : MonoBehaviour
         SceneManager.LoadScene("MenuScene");
 
         AudioManager.Instance.PlaySFX(SoundType.ButtonClick);
+        AudioManager.Instance.StopMusic();
     }
 }
 
