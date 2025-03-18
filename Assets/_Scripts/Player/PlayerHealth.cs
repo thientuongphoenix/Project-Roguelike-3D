@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -8,23 +9,46 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthSlider;
     public Slider shieldSlider;
 
+    private PlayerController playerController; // Tham chiếu đến PlayerController nhằm lôi cái ChangeAnimationState ra
+    public bool isDead {  get; private set; }
+
     void Start()
     {
+        playerController = GetComponent<PlayerController>();
+
+        playerStats.MaxHealth = 100;
+        playerStats.MaxShield = 30;
+        playerStats.Armor = 0;
         playerStats.Health = playerStats.MaxHealth;
         playerStats.Shield = playerStats.MaxShield;
 
         UpdateHealthUI();
         UpdateShieldUI();
+
+        isDead = false;
+
+        // Bắt đầu hồi Shield
+        StartCoroutine(RegenerateShield());
     }
 
-    public void TakeDamage(int damage)
+    private void FixedUpdate()
     {
-        int remainingDamage = damage;
+        if(playerStats.Health <= 0)
+        {
+            playerStats.Health = 0;
+            isDead = true;
+            StartCoroutine(Die());
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        float remainingDamage = damage;
 
         // Nếu có Shield, trừ Shield trước
         if (playerStats.Shield > 0)
         {
-            int shieldAbsorb = Mathf.Min(playerStats.Shield, remainingDamage);
+            float shieldAbsorb = Mathf.Min(playerStats.Shield, remainingDamage);
             playerStats.Shield -= shieldAbsorb;
             remainingDamage -= shieldAbsorb;
 
@@ -42,10 +66,11 @@ public class PlayerHealth : MonoBehaviour
 
             playerStats.Health -= remainingDamage;
 
+            //Hết máu thì cook
             if (playerStats.Health <= 0)
             {
                 playerStats.Health = 0;
-                Die();
+                //Die();
             }
         }
 
@@ -84,11 +109,34 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    private IEnumerator Die()
     {
+        isDead = true;
         Debug.Log("Player đã chết!");
-        // Thêm hiệu ứng chết
 
+        // Gọi animation chết từ PlayerController
+        playerController.ChangeAnimationState(AnimationState.Die);
+
+        // Chờ animation chạy xong
+        yield return new WaitForSeconds(1f);
+
+        // Hủy Player
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Tự động hồi Shield mỗi giây.
+    /// </summary>
+    private IEnumerator RegenerateShield()
+    {
+        while (!isDead) // Chỉ hồi shield nếu nhân vật còn sống
+        {
+            yield return new WaitForSeconds(1f); // Chờ 1 giây
+            if (playerStats.Shield < playerStats.MaxShield)
+            {
+                playerStats.Shield = Mathf.Min(playerStats.Shield + 2, playerStats.MaxShield);
+                UpdateShieldUI();
+            }
+        }
     }
 }

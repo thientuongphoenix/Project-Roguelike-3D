@@ -10,7 +10,7 @@ public class PlayerExp : MonoBehaviour
 
     private int expToNextLevel; // EXP cần để lên cấp tiếp theo
 
-    void Start()
+    void Awake()
     {
         playerStats.Level = 1;
         playerStats.TotalExp = 0;
@@ -19,18 +19,25 @@ public class PlayerExp : MonoBehaviour
         UpdateUI();
 
         // Test: Tự động cộng kinh nghiệm mỗi giây
-        InvokeRepeating("AddExp", 1f, 1f);
+        //InvokeRepeating("AddExp", 1f, 1f);
+    }
+
+    private void Update()
+    {
+        AddExp();
     }
 
     void AddExp()
     {
-        int expGain = Random.Range(5, 15); // Thêm EXP ngẫu nhiên để test
-        playerStats.TotalExp += expGain;
+        //int expGain = Random.Range(5, 15); // Thêm EXP ngẫu nhiên để test
+        //playerStats.TotalExp += expGain;
+        //Enemy chết thì cộng exp
+
         CheckLevelUp();
         UpdateUI();
     }
 
-    void CheckLevelUp()
+    public void CheckLevelUp()
     {
         while (playerStats.TotalExp >= expToNextLevel)
         {
@@ -40,7 +47,7 @@ public class PlayerExp : MonoBehaviour
         }
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         levelText.text = "LVL " + playerStats.Level;
         expSlider.maxValue = expToNextLevel;

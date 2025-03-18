@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Unity.Android.Gradle.Manifest;
+//using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using static UnityEngine.AudioSettings;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 
 public enum AnimationState
 {
@@ -10,7 +10,8 @@ public enum AnimationState
     Move,
     Climb,
     Jump,
-    Fly
+    Fly,
+    Die
 }
 
 public class PlayerController : MonoBehaviour
@@ -28,16 +29,30 @@ public class PlayerController : MonoBehaviour
     private bool _isClimbing;
     private AnimationState _currentState; // Chuyển State Animation bằng String
 
+    private PlayerHealth _playerHealth;
+
+    //private PlayerAnimationController playerAnimationController;
+
+    private bool isDead;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _playerJoystick = Object.FindFirstObjectByType<MobileJoystick>();
         _checkForClimbable = GetComponent<CheckForClimbable>();
         _animator = GetComponentInChildren<Animator>(); // Tìm Animator trong Object con
+        _playerHealth = GetComponent<PlayerHealth>();
+
+        playerStats.Speed = 2;
+
+        isDead = _playerHealth.isDead;
     }
 
     void FixedUpdate()
     {
+        isDead = _playerHealth.isDead;
+        if (isDead) return;
+
         if (_checkForClimbable._canClimb && !_isClimbing)
         {
             StartCoroutine(ClimbUp());
@@ -67,10 +82,12 @@ public class PlayerController : MonoBehaviour
         if (move.magnitude > 0.1f) // Nếu có di chuyển
         {
             ChangeAnimationState(AnimationState.Move);
+            //playerAnimationController.ChangeAnimationState(PlayerAnimationState.Move);
         }
         else // Nếu dừng lại
         {
             ChangeAnimationState(AnimationState.Idle);
+            //playerAnimationController.ChangeAnimationState(PlayerAnimationState.Idle);
         }
     }
 
@@ -121,7 +138,7 @@ public class PlayerController : MonoBehaviour
         //ChangeAnimationState(AnimationState.Idle);
     }
 
-    void ChangeAnimationState(AnimationState newState)
+    public void ChangeAnimationState(AnimationState newState)
     {
         if (_currentState == newState) return;
 

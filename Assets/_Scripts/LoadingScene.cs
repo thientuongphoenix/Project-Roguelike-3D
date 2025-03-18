@@ -25,7 +25,7 @@ public class LoadingScene : MonoBehaviour
         }
 
         // After simulating, load the actual game scene
-        LoadScene("ThienTuong"); // Replace "GameScene" with the actual name of your game scene
+        LoadScene("Map00"); // Replace "GameScene" with the actual name of your game scene
     }
 
     public void LoadScene(string sceneName)

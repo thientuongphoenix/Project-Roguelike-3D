@@ -12,7 +12,7 @@ public class WeaponStats : ScriptableObject
     public float range; // Tầm bắn
     public float fireRate; // Tốc độ bắn (số phát bắn mỗi giây)
     public float detectionRange; // Tầm phát hiện enemy
-    public int damage; // Sát thương
+    public float damage; // Sát thương
     public float CritChance;
     public float CritDamage;
     public float fireCooldown;
@@ -20,4 +20,7 @@ public class WeaponStats : ScriptableObject
     [Header("Bullet Settings")]
     public GameObject bulletPrefab;
     public float bulletSpeed;
+
+    [Header("Weapon Price")]
+    public int weaponPrice;
 }

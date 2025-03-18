@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: DefaultWeaponStats
   m_EditorClassIdentifier: 
   weaponName: DefaultWeapon
-  weaponIcon: {fileID: 0}
-  weaponPrefab: {fileID: 1774014928040771565, guid: f47a3183289b9dd47a40be8992e7b07d, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 590a389e82dfa6941b10bfe22edfcaf7, type: 3}
+  weaponPrefab: {fileID: 3519159347808727896, guid: e2c8e377b1c707243b6494ae2c6fa8e6, type: 3}
   range: 5
-  fireRate: 3
+  fireRate: 2
   detectionRange: 5
   damage: 10
   CritChance: 0
   CritDamage: 0
-  fireCooldown: -2.2598171
+  fireCooldown: 1
   bulletPrefab: {fileID: 1921076108878798791, guid: f78dad5ce5660ba429f496990104082a, type: 3}
   bulletSpeed: 30
+  weaponPrice: 5

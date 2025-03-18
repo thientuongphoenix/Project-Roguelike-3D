@@ -12,12 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f083b911ac842448830193ad570861, type: 3}
   m_Name: PlayerStatsDefault
   m_EditorClassIdentifier: 
-  Level: 4
-  TotalExp: 15
+  Level: 7
+  TotalExp: 4
   Speed: 2
-  Health: 103
-  MaxHealth: 103
-  Armor: 1
-  Shield: 30
+  Health: 101
+  MaxHealth: 101
+  Armor: 2
+  Shield: 6
   MaxShield: 30
-  Dodge: 3
+  ShieldRegen: 0
+  Dodge: 4
+  Luck: 0
+  PickupRange: 0
+  PercentXPGain: 0
+  PercentDamage: 0
+  AttackSpeed: 0
+  CritChance: 0
+  CritDamage: 0
+  LifeSteal: 0
+  Range: 0
+  DetectionRange: 5
