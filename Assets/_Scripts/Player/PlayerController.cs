@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Unity.Android.Gradle.Manifest;
+//using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using static UnityEngine.AudioSettings;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 
 public enum AnimationState
 {

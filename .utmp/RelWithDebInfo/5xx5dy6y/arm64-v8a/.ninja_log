@@ -1,0 +1,21 @@
+# ninja log v5
+51	1669	7639935436573300	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	35397380bf1c98f8
+41	1700	7639935436879744	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	bf7063996ed5d767
+71	1847	7639935438407715	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4753ae76a62c77d3
+1	1721	7639935437129725	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	fa4a3d08522f1beb
+20	1940	7639935439362846	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	82640a09c0362e02
+60	1723	7639935437164093	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	ef12fdf7fc2ce7ab
+29	2183	7639935441832336	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	1fff4c6e38a2d6cc
+11	2359	7639935443532368	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2089ca25221e9bff
+2359	2580	7639935445843881	D:/Project Roguelike 3D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5xx5dy6y/obj/arm64-v8a/libgame.so	f1ef0edeadaf82de
+100	604	7639956154898559	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	959a10fa054db504
+605	940	7639956158621827	D:/Project Roguelike 3D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5xx5dy6y/obj/arm64-v8a/libswappywrapper.so	120468352567d1c6
+42	1660	7639956165718916	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	bf7063996ed5d767
+32	1687	7639956166029793	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	fa4a3d08522f1beb
+51	1707	7639956166263207	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	35397380bf1c98f8
+60	1773	7639956166985390	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	ef12fdf7fc2ce7ab
+81	1865	7639956167928833	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4753ae76a62c77d3
+21	1906	7639956168315291	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	82640a09c0362e02
+69	2159	7639956170871473	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	1fff4c6e38a2d6cc
+12	2221	7639956171464719	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2089ca25221e9bff
+2221	2364	7639956172981859	D:/Project Roguelike 3D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5xx5dy6y/obj/arm64-v8a/libgame.so	f1ef0edeadaf82de
