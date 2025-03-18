@@ -94,6 +94,8 @@ public class ShopScrollSnap : MonoBehaviour
             // Hiển thị cảnh báo nếu không đủ block
             StartCoroutine(ShowStatusMessage("You don't have enough blocks!", 1f));
         }
+
+        AudioManager.Instance.PlaySFX(SoundType.ButtonClick);
     }
 
     /// <summary>

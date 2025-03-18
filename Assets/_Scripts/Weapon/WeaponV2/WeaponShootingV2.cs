@@ -54,6 +54,8 @@ public class WeaponShootingV2 : MonoBehaviour
         GameObject bullet = Instantiate(weaponStats.bulletPrefab, firePoint.position, bulletRotation);
         BulletV2 bulletScript = bullet.GetComponent<BulletV2>();
 
+        AudioManager.Instance.PlaySFX(SoundType.PlayerShoot);
+
         if (bulletScript != null)
         {
             bulletScript.SetTarget(target, weaponStats.bulletSpeed, weaponStats.damage);

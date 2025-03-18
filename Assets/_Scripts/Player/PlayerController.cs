@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>(); // Tìm Animator trong Object con
         _playerHealth = GetComponent<PlayerHealth>();
 
+        playerStats.Speed = 2;
+
         isDead = _playerHealth.isDead;
     }
 

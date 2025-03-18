@@ -16,12 +16,12 @@ MonoBehaviour:
   weaponIcon: {fileID: 21300000, guid: 91b2e976d0a32444db6bfd3c97405d9c, type: 3}
   weaponPrefab: {fileID: 3613984097171208841, guid: 148471008fd9148498c9a94c4e21515f, type: 3}
   range: 5
-  fireRate: 3
+  fireRate: 2
   detectionRange: 5
-  damage: 10
+  damage: 15
   CritChance: 5
   CritDamage: 5
-  fireCooldown: 1
+  fireCooldown: 1.5
   bulletPrefab: {fileID: 1921076108878798791, guid: f78dad5ce5660ba429f496990104082a, type: 3}
   bulletSpeed: 20
-  weaponPrice: 20
+  weaponPrice: 10

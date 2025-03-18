@@ -28,6 +28,8 @@ public class PauseManager : MonoBehaviour
     {
         if (isPaused) return; // Nếu đã pause thì không cần pause nữa
 
+        AudioManager.Instance.PlaySFX(SoundType.ButtonClick);
+
         isPaused = true;
         Time.timeScale = 0f; // Dừng thời gian game
         pausePanel.SetActive(true); // Hiện Panel Pause
@@ -43,6 +45,8 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f; // Tiếp tục thời gian game
         pausePanel.SetActive(false); // Ẩn Panel Pause
+
+        AudioManager.Instance.PlaySFX(SoundType.ButtonClick);
     }
 
     /// <summary>
@@ -52,6 +56,8 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f; // Tiếp tục thời gian trước khi load scene
         SceneManager.LoadScene("MenuScene");
+
+        AudioManager.Instance.PlaySFX(SoundType.ButtonClick);
     }
 
     /// <summary>

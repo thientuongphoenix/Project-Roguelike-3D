@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour
 {
+    public PlayerStats playerStats;
     public TextMeshProUGUI blockText; // Hiển thị số lượng Block trên UI
     private int blockCount = 0; // Số lượng Block đã nhặt
 
+    private PlayerHealth playerHealth; // Tham chiếu đến PlayerHealth
+
     private void Start()
     {
+        playerHealth = GetComponent<PlayerHealth>();
         UpdateUI();
     }
 
@@ -17,6 +21,10 @@ public class PlayerPickup : MonoBehaviour
         {
             blockCount++;
             UpdateUI();
+            if (playerHealth != null)
+            {
+                playerHealth.Heal(10); // Hồi 10 máu
+            }
             Destroy(other.gameObject); // Hủy Block khỏi game
         }
     }

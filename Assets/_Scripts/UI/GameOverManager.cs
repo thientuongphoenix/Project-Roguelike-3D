@@ -24,6 +24,7 @@ public class GameOverManager : MonoBehaviour
         if (isDead)
         {
             StartCoroutine(WaitOneSecond());
+            
             //ShowGameOver();
         }
     }
@@ -33,6 +34,7 @@ public class GameOverManager : MonoBehaviour
     /// </summary>
     public void ShowGameOver()
     {
+        AudioManager.Instance.PlaySFX(SoundType.GameOver);
         Time.timeScale = 0; // Dừng thời gian game trước khi hiện panel game over
         gameOverPanel.SetActive(true); // Hiện Panel Game Over
     }
@@ -44,6 +46,8 @@ public class GameOverManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1; // Bỏ dừng thời gian game
+
+        AudioManager.Instance.PlaySFX(SoundType.ButtonClick);
     }
 
     /// <summary>

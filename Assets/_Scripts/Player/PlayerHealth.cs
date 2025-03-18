@@ -23,6 +23,9 @@ public class PlayerHealth : MonoBehaviour
         UpdateShieldUI();
 
         isDead = false;
+
+        // Bắt đầu hồi Shield
+        StartCoroutine(RegenerateShield());
     }
 
     private void FixedUpdate()
@@ -116,5 +119,21 @@ public class PlayerHealth : MonoBehaviour
 
         // Hủy Player
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Tự động hồi Shield mỗi giây.
+    /// </summary>
+    private IEnumerator RegenerateShield()
+    {
+        while (!isDead) // Chỉ hồi shield nếu nhân vật còn sống
+        {
+            yield return new WaitForSeconds(1f); // Chờ 1 giây
+            if (playerStats.Shield < playerStats.MaxShield)
+            {
+                playerStats.Shield = Mathf.Min(playerStats.Shield + 2, playerStats.MaxShield);
+                UpdateShieldUI();
+            }
+        }
     }
 }

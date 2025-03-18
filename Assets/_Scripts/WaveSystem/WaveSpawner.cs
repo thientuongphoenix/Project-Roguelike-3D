@@ -94,6 +94,8 @@ public class WaveSpawner : MonoBehaviour
     {
         Time.timeScale = 1f; // Tiếp tục thời gian game
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Load lại Scene hiện tại
+
+        AudioManager.Instance.PlaySFX(SoundType.ButtonClick);
     }
 
     /// <summary>
@@ -103,6 +105,8 @@ public class WaveSpawner : MonoBehaviour
     {
         Time.timeScale = 1f; // Tiếp tục thời gian game
         SceneManager.LoadScene("MenuScene");
+
+        AudioManager.Instance.PlaySFX(SoundType.ButtonClick);
     }
 }
 
