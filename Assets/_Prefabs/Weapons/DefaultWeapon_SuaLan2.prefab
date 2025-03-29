@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 10
+  rotationOffset: {x: -90, y: 0, z: 0}
 --- !u!114 &7663417544799594525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +165,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 4270688288148634711}
   weaponStats: {fileID: 11400000, guid: 49b6e512b76643845a5c8496ab1e3eeb, type: 2}
+  bulletPrefab: {fileID: 2794961320482403590, guid: f78dad5ce5660ba429f496990104082a, type: 3}
