@@ -37,6 +37,7 @@ public class BulletV2 : MonoBehaviour
         if (other.transform == target)
         {
             ApplyDamage(other);
+            //Destroy(gameObject);
             PoolManager.Instance.ReturnObject<BulletV2>("BulletV2", this);
         }
     }

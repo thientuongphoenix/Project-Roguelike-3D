@@ -60,7 +60,7 @@ public class WeaponShootingV2 : MonoBehaviour
         // Tạo viên đạn với góc quay chính xác
         //GameObject bullet = Instantiate(weaponStats.bulletPrefab, firePoint.position, bulletRotation);
         var bullet = PoolManager.Instance.GetObject<BulletV2>(BULLET_POOL_KEY, firePoint.position, bulletRotation);
-        
+
         BulletV2 bulletScript = bullet.GetComponent<BulletV2>();
 
         AudioManager.Instance.PlaySFX(SoundType.PlayerShoot);
