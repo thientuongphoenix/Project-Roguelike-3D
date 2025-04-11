@@ -2,7 +2,7 @@
 
 public class FrameRateManager : MonoBehaviour
 {
-    public int targetFrameRate = 120; // Set your desired frame rate here
+    public int targetFrameRate = 120;
 
     void Awake()
     {
@@ -13,7 +13,6 @@ public class FrameRateManager : MonoBehaviour
         Application.targetFrameRate = targetFrameRate;
     }
 
-    // Đảm bảo chỉ có một FrameRateManager trong toàn game
     void Start()
     {
         DontDestroyOnLoad(gameObject);
