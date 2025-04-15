@@ -10,9 +10,16 @@ public class WeaponShootingV2 : MonoBehaviour
     private WeaponDetectionV2 detectionSystem;
     private float nextFireTime;
 
+    public BulletV2 bulletPrefab;
+
+    private const string BULLET_POOL_KEY = "BulletV2";
+    private const int INITIAL_BULLET_COUNT = 10;
+
     void Start()
     {
         detectionSystem = GetComponent<WeaponDetectionV2>();
+
+        PoolManager.Instance.CreatePool(BULLET_POOL_KEY, bulletPrefab, INITIAL_BULLET_COUNT);
     }
 
     void Update()
@@ -51,7 +58,9 @@ public class WeaponShootingV2 : MonoBehaviour
         bulletRotation *= Quaternion.Euler(90, 0, 0);
 
         // Tạo viên đạn với góc quay chính xác
-        GameObject bullet = Instantiate(weaponStats.bulletPrefab, firePoint.position, bulletRotation);
+        //GameObject bullet = Instantiate(weaponStats.bulletPrefab, firePoint.position, bulletRotation);
+        var bullet = PoolManager.Instance.GetObject<BulletV2>(BULLET_POOL_KEY, firePoint.position, bulletRotation);
+
         BulletV2 bulletScript = bullet.GetComponent<BulletV2>();
 
         AudioManager.Instance.PlaySFX(SoundType.PlayerShoot);

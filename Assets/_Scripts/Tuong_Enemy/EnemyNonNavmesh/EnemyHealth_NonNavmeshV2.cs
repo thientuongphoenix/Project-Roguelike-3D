@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class EnemyHealth_NonNavmeshV2 : MonoBehaviour
 {
-    [Header("Enemy Stats")]
+        [Header("Enemy Stats")]
     public float maxHealth = 100f; // Máu tối đa của enemy
     [SerializeField] private float currentHealth; // Máu hiện tại của enemy
     public float expReward = 50f; // EXP nhận được khi tiêu diệt enemy
@@ -21,6 +21,9 @@ public class EnemyHealth_NonNavmeshV2 : MonoBehaviour
 
     public bool IsDead { get; private set; } // Trạng thái của enemy
 
+    private const string GreenBlock_POOL_KEY = "GreenBlock";
+    private const int INITIAL_GREENBLOCK_COUNT = 10;
+
     private void Awake()
     {
         enemyAnim = GetComponent<EnemyAnimationController_Tuong>();
@@ -30,11 +33,16 @@ public class EnemyHealth_NonNavmeshV2 : MonoBehaviour
         waveSpawner = GetComponentInParent<WaveSpawner>();
     }
 
-    /// <summary>
-    /// Enemy nhận damage và kiểm tra trạng thái chết.
-    /// </summary>
-    /// <param name="damage">Lượng sát thương nhận vào.</param>
-    public void TakeDamage(float damage)
+    void Start()
+    {
+        PoolManager.Instance.CreatePool(GreenBlock_POOL_KEY, dropItemPrefab.GetComponent<MonoBehaviour>(), INITIAL_GREENBLOCK_COUNT);
+    }
+
+  /// <summary>
+  /// Enemy nhận damage và kiểm tra trạng thái chết.
+  /// </summary>
+  /// <param name="damage">Lượng sát thương nhận vào.</param>
+  public void TakeDamage(float damage)
     {
         if (IsDead) return; // Không nhận damage nếu đã chết
 
@@ -72,7 +80,8 @@ public class EnemyHealth_NonNavmeshV2 : MonoBehaviour
         // Rớt vật phẩm sau khi chết
         if (dropItemPrefab != null)
         {
-            Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
+            //Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
+            PoolManager.Instance.GetObject<MonoBehaviour>(GreenBlock_POOL_KEY, transform.position, Quaternion.identity);
         }
 
         yield return new WaitForSeconds(1f);

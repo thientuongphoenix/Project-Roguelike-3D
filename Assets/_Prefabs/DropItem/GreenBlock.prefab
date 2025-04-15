@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 670009072686230718}
   - component: {fileID: 4931588646208400342}
   - component: {fileID: 5833213578121875435}
+  - component: {fileID: 4837908364222232460}
   m_Layer: 9
   m_Name: GreenBlock
   m_TagString: Block
@@ -158,3 +159,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4837908364222232460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996205047687515581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa98acd0078ce9b498be1ee107b42f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

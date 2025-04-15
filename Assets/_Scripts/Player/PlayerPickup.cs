@@ -25,7 +25,8 @@ public class PlayerPickup : MonoBehaviour
             {
                 playerHealth.Heal(10); // Hồi 10 máu
             }
-            Destroy(other.gameObject); // Hủy Block khỏi game
+            //Destroy(other.gameObject); // Hủy Block khỏi game
+            PoolManager.Instance.ReturnObject("GreenBlock", other.gameObject.GetComponent<MonoBehaviour>()); 
         }
     }
 
